@@ -52,3 +52,6 @@ nnoremap <C-m> :TagbarToggle<CR>
 " set the cursor to a vertical line in insert mode and a solid block
 " " in command mode
 
+" SuperTab
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"

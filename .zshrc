@@ -86,3 +86,5 @@ function pbcopy {
 }
 
 alias glcopy="gl | head - 1 | cut -d ' ' -f 2 | pbcopy"
+
+[ -x "/Applications/MacVim.app/Contents/MacOS/Vim" ] && alias vim=/Applications/MacVim.app/Contents/MacOS/Vim

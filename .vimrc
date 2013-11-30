@@ -58,3 +58,13 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " Quick Mappings
 nnoremap H ^
 nnoremap L $
+
+" Disable arrow key navigation
+nmap <Left>     <Nop>
+nmap <Right>    <Nop>
+nmap <Up>       <Nop>
+nmap <Down>     <Nop>
+imap <up>       <nop>
+imap <down>     <nop>
+imap <left>     <nop>
+imap <right>    <nop>

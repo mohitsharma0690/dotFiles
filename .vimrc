@@ -1,17 +1,12 @@
-set nocompatible
-set nu
-
-" Pathogen
 call pathogen#infect()
 call pathogen#helptags()
- 
-" set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
-filetype plugin indent on
- 
+filetype off
 syntax on
-" set gcr=...,i-ci:ver10-Cursor/lCursor,...
-" set gcr=i-ci:ver25-iCursor
-" set gcr=n-v-c:block-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+filetype plugin indent on
+call pathogen#infect()
+
+set nocompatible
+set nu
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -55,3 +50,11 @@ nnoremap <C-m> :TagbarToggle<CR>
 " SuperTab
 au FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
+
+" Quick Open .vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Quick Mappings
+nnoremap H ^
+nnoremap L $

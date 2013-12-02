@@ -1,0 +1,18 @@
+" Set some preferences
+set ignorecase
+set wrapscan
+set guioptions=r
+
+" Disable arrow key navigation
+nmap <Left>     <Nop>
+nmap <Right>    <Nop>
+nmap <Up>       <Nop>
+nmap <Down>     <Nop>
+imap <up>       <Nop>
+imap <down>     <Nop>
+imap <left>     <Nop>
+imap <right>    <Nop>
+
+" Quick Mappings
+nnoremap H ^
+nnoremap L $

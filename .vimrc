@@ -58,6 +58,8 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " Quick Mappings
 nnoremap H ^
 nnoremap L $
+nnoremap <C-N> :next<Enter>
+nnoremap <C-B> :prev<Enter>
 
 " Disable arrow key navigation
 nmap <Left>     <Nop>

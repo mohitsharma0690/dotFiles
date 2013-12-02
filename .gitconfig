@@ -1,0 +1,46 @@
+[user]
+	name = Mohit
+	user = mohitsharma0690
+	email = mohit@pocketgems.com
+	editor = /usr/bin/vim
+[color]
+	branch = always
+	ui = true
+# [merge]
+#	tool = vimdiff
+# [core]
+#	trustctime = false
+#	excludesfile = /Users/mohitsharma/.gitignore_global
+#[difftool "sourcetree"]
+#	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+#	path = 
+#[mergetool "sourcetree"]
+#	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+#	trustExitCode = true
+
+[mergetool "diffmerge"]
+    cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
+    trustExitCode = false
+[merge] 
+    tool = diffmerge
+[core]
+[mergetool]
+    keepBackup = false
+[diff]  
+    tool = diffmerge
+	renames = copies
+[difftool "diffmerge"]
+    cmd = diffmerge $LOCAL $REMOTE
+[difftool "sourcetree"]
+	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+	trustExitCode = true
+[core]
+	excludesfile = /Users/mohitsharma/.gitignore_global
+	editor = /usr/bin/vim
+[branch]
+	autosetupmerge = true
+[gui]
+	recentrepo = /Users/mohitsharma/projects/pocketGems/rescuerangers

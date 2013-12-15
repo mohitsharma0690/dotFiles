@@ -14,7 +14,8 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 set hlsearch
 set showmatch
 set autoindent
-set history=1000
+set history=100
+set ruler
 " set cursorline on
 set expandtab
 set shiftwidth=4
@@ -62,11 +63,48 @@ nnoremap <C-N> :next<Enter>
 nnoremap <C-B> :prev<Enter>
 
 " Disable arrow key navigation
-nmap <Left>     <Nop>
-nmap <Right>    <Nop>
-nmap <Up>       <Nop>
-nmap <Down>     <Nop>
-imap <up>       <nop>
-imap <down>     <nop>
-imap <left>     <nop>
-imap <right>    <nop>
+" nmap <Left>     <Nop>
+" nmap <Right>    <Nop>
+" nmap <Up>       <Nop>
+" nmap <Down>     <Nop>
+" imap <up>       <nop>
+" imap <down>     <nop>
+" imap <left>     <nop>
+" imap <right>    <nop>
+
+let maplocalleader='\\'
+
+" Commenting
+augroup ft_javascript
+    autocmd!
+    autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType javascript vnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType javascript iabbrev <buffer> iff if ()<left>
+augroup END
+
+augroup ft_python
+    autocmd!
+    autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
+    autocmd FileType python     vnoremap <buffer> <localleader>c I#<esc>
+    autocmd FileType python setlocal colorcolumn=81
+    autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
+augroup END
+
+augroup ft_vim
+    autocmd!
+    autocmd FileType vim        nnoremap <buffer> <localleader>c I"<esc>
+    autocmd FileType vim        vnoremap <buffer> <localleader>c I"<esc>
+augroup END
+
+augroup ft_c_cpp
+    autocmd!
+    autocmd FileType c,cpp      iabbrev <buffer> iff if ( )<esc>hi
+    autocmd FileType c,cpp      nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType c,cpp      vnoremap <buffer> <localleader>c I//<esc>
+augroup END
+
+augroup ft_c
+    autocmd!
+    autocmd FileType c          nnoremap <buffer> <localleader>h I#include<<esc>$a.h>
+augroup END 
+

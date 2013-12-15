@@ -80,11 +80,6 @@ bindkey '^[[3~' delete-char            # Del
 bindkey '^[[5~' vi-backward-blank-word # Page Up
 bindkey '^[[6~' vi-forward-blank-word  # Page Down"]]]]"
 
-# copy to clipboard
-function pbcopy {
-    base64 -w 0| xargs -0 -d "\n" -n1 -I {} zsh -c "echo -ne '\e]52;;{}\e\\'"
-}
-
-alias glcopy="gl | head - 1 | cut -d ' ' -f 2 | pbcopy"
-
 [ -x "/Applications/MacVim.app/Contents/MacOS/Vim" ] && alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
+
+alias gl1="gl | head -1 | pbcopy"

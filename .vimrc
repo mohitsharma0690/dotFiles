@@ -8,6 +8,7 @@ call pathogen#infect()
 set nocompatible
 set nu
 
+" set the cursor to a vertical line in insert mode and a solid block in command mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
@@ -23,7 +24,7 @@ set tabstop=4
 set softtabstop=4
 set guifont=Menlo\ Regular:h14
 
-" Nerdtree
+" Nerdtree ========================================= {{{ 
 " autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
@@ -38,15 +39,13 @@ map <C-n> :NERDTreeToggle<CR>
 
 " Auto-close nerd-tree if it is the only window open
  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" }}}
 
 " colorscheme Tomorrow
  
 " Tagbar
 let g:tagbar_usearrows = 1
 nnoremap <C-m> :TagbarToggle<CR>
-
-" set the cursor to a vertical line in insert mode and a solid block
-" " in command mode
 
 " SuperTab
 au FileType python set omnifunc=pythoncomplete#Complete
@@ -56,11 +55,13 @@ let g:SuperTabDefaultCompletionType = "context"
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" Quick Mappings
+" Quick Mappings =========================================  {{{
 nnoremap H ^
 nnoremap L $
 nnoremap <C-N> :next<Enter>
 nnoremap <C-B> :prev<Enter>
+nnoremap === i<space>=========================================
+" }}}
 
 " Disable arrow key navigation
 " nmap <Left>     <Nop>
@@ -74,14 +75,16 @@ nnoremap <C-B> :prev<Enter>
 
 let maplocalleader='\\'
 
-" Commenting
+" Javascript filetype settings ========================================= {{{
 augroup ft_javascript
     autocmd!
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
     autocmd FileType javascript vnoremap <buffer> <localleader>c I//<esc>
     autocmd FileType javascript iabbrev <buffer> iff if ()<left>
 augroup END
+" }}}
 
+" Python file settings ======================================== {{{
 augroup ft_python
     autocmd!
     autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
@@ -89,22 +92,30 @@ augroup ft_python
     autocmd FileType python setlocal colorcolumn=81
     autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
 augroup END
+" }}}
 
+" Vimscript file settings ========================================= {{{
 augroup ft_vim
     autocmd!
     autocmd FileType vim        nnoremap <buffer> <localleader>c I"<esc>
     autocmd FileType vim        vnoremap <buffer> <localleader>c I"<esc>
+    autocmd FileType vim setlocal foldmethod=marker
 augroup END
+" }}}
 
+" C/CPP file settings ========================================== {{{
 augroup ft_c_cpp
     autocmd!
     autocmd FileType c,cpp      iabbrev <buffer> iff if ( )<esc>hi
     autocmd FileType c,cpp      nnoremap <buffer> <localleader>c I//<esc>
     autocmd FileType c,cpp      vnoremap <buffer> <localleader>c I//<esc>
 augroup END
+" }}}
 
+" C file settings ========================================= {{{
 augroup ft_c
     autocmd!
     autocmd FileType c          nnoremap <buffer> <localleader>h I#include<<esc>$a.h>
 augroup END 
+" }}}
 

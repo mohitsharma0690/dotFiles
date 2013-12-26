@@ -41,7 +41,11 @@ map <C-n> :NERDTreeToggle<CR>
  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " }}}
 
-" colorscheme Tomorrow
+"colorscheme Tomorrow
+if has('gui_running')
+    set background=dark
+    colorscheme Tomorrow-Night-Eighties
+endif
  
 " Tagbar
 let g:tagbar_usearrows = 1
@@ -89,8 +93,8 @@ augroup ft_python
     autocmd!
     autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
     autocmd FileType python     vnoremap <buffer> <localleader>c I#<esc>
-    autocmd FileType python setlocal colorcolumn=81
-    autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
+    "autocmd FileType python setlocal colorcolumn=81
+    "autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
 augroup END
 " }}}
 
@@ -119,3 +123,15 @@ augroup ft_c
 augroup END 
 " }}}
 
+" higlight extra white space  ========================================= {{{
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+nnoremap <leader>we :match ExtraWhitespace /.\%>80v/<CR>
+nnoremap <leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
+" }}}
+
+" Special file settings ========================================= {{{
+augroup ft_txt_spc
+    autocmd!
+    autocmd BufRead * if expand('%:t') == '~~' | setlocal foldmethod=marker | endif
+augroup END
+" }}}

@@ -83,3 +83,5 @@ bindkey '^[[6~' vi-forward-blank-word  # Page Down"]]]]"
 [ -x "/Applications/MacVim.app/Contents/MacOS/Vim" ] && alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 
 alias gl1="gl | head -1 | pbcopy"
+
+alias ctags=/usr/local/bin/ctags

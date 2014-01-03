@@ -26,7 +26,7 @@ set guifont=Menlo\ Regular:h14
 
 " Nerdtree ========================================= {{{ 
 " autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>m :NERDTreeToggle<CR>
 
  let NERDTreeShowBookmarks=1
  let NERDTreeChDirMode=0
@@ -49,7 +49,7 @@ endif
  
 " Tagbar
 let g:tagbar_usearrows = 1
-nnoremap <C-m> :TagbarToggle<CR>
+nnoremap <leader>m :TagbarToggle<CR>
 
 " SuperTab
 au FileType python set omnifunc=pythoncomplete#Complete
@@ -65,6 +65,9 @@ nnoremap L $
 nnoremap <C-N> :next<Enter>
 nnoremap <C-B> :prev<Enter>
 nnoremap === i<space>=========================================
+
+" grep for key word under cursor
+"nnoremap <leader>g :silent execute \"grep! -R \" . shellescape(expand("<cWORD>")) . \" .\"<cr>:copen<cr>
 " }}}
 
 " Disable arrow key navigation
@@ -95,6 +98,7 @@ augroup ft_python
     autocmd FileType python     vnoremap <buffer> <localleader>c I#<esc>
     "autocmd FileType python setlocal colorcolumn=81
     "autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
+    autocmd BufWritePost *.py silent! !ctags -R &
 augroup END
 " }}}
 
@@ -113,6 +117,7 @@ augroup ft_c_cpp
     autocmd FileType c,cpp      iabbrev <buffer> iff if ( )<esc>hi
     autocmd FileType c,cpp      nnoremap <buffer> <localleader>c I//<esc>
     autocmd FileType c,cpp      vnoremap <buffer> <localleader>c I//<esc>
+    autocmd BufWritePost *.c,*.cpp,*.h silent! !ctags -R &
 augroup END
 " }}}
 
@@ -135,3 +140,5 @@ augroup ft_txt_spc
     autocmd BufRead * if expand('%:t') == '~~' | setlocal foldmethod=marker | endif
 augroup END
 " }}}
+"
+

@@ -44,7 +44,7 @@ nnoremap <leader>m :NERDTreeToggle<CR>
 "colorscheme Tomorrow
 if has('gui_running')
     set background=dark
-    colorscheme Tomorrow-Night-Eighties
+    colorscheme Codeschool
 endif
  
 " Tagbar
@@ -86,7 +86,7 @@ let maplocalleader='\\'
 augroup ft_javascript
     autocmd!
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-    autocmd FileType javascript vnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType javascript vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock("//")<cr>
     autocmd FileType javascript iabbrev <buffer> iff if ()<left>
 augroup END
 " }}}
@@ -95,7 +95,8 @@ augroup END
 augroup ft_python
     autocmd!
     autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
-    autocmd FileType python     vnoremap <buffer> <localleader>c I#<esc>
+    autocmd FileType python     vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock("#")<cr>
+
     "autocmd FileType python setlocal colorcolumn=81
     "autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
     autocmd BufWritePost *.py silent! !ctags -R &
@@ -106,7 +107,7 @@ augroup END
 augroup ft_vim
     autocmd!
     autocmd FileType vim        nnoremap <buffer> <localleader>c I"<esc>
-    autocmd FileType vim        vnoremap <buffer> <localleader>c I"<esc>
+    autocmd FileType vim        vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock('"')<cr>
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " }}}
@@ -116,7 +117,7 @@ augroup ft_c_cpp
     autocmd!
     autocmd FileType c,cpp      iabbrev <buffer> iff if ( )<esc>hi
     autocmd FileType c,cpp      nnoremap <buffer> <localleader>c I//<esc>
-    autocmd FileType c,cpp      vnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType c,cpp      vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock("//")<cr>
     autocmd BufWritePost *.c,*.cpp,*.h silent! !ctags -R &
 augroup END
 " }}}
@@ -141,4 +142,18 @@ augroup ft_txt_spc
 augroup END
 " }}}
 "
+
+function! CommentOutVisualBlock(comment_string)
+    let firstline = line("'<'")
+    let lastline = line("'>'")
+    for linenum in range(firstline, lastline)
+        let curr_line = getline(linenum)
+        let beginning_of_line = curr_line[:strlen(a:comment_string) - 1]
+        if beginning_of_line == a:comment_string
+            call setline(linenum, curr_line[strlen(a:comment_string):])
+        else
+            call setline(linenum, a:comment_string . curr_line)
+        endif
+    endfor
+endfunction
 

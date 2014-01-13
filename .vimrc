@@ -24,7 +24,7 @@ set tabstop=4
 set softtabstop=4
 set guifont=Menlo\ Regular:h14
 
-" Nerdtree ========================================= {{{ 
+" Nerdtree {{{
 " autocmd vimenter * NERDTree
 nnoremap <leader>m :NERDTreeToggle<CR>
 
@@ -46,7 +46,7 @@ if has('gui_running')
     set background=dark
     colorscheme Codeschool
 endif
- 
+
 " Tagbar
 let g:tagbar_usearrows = 1
 nnoremap <leader>m :TagbarToggle<CR>
@@ -59,12 +59,12 @@ let g:SuperTabDefaultCompletionType = "context"
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" Quick Mappings =========================================  {{{
+" Quick Mappings {{{
 nnoremap H ^
 nnoremap L $
 nnoremap <C-N> :next<Enter>
 nnoremap <C-B> :prev<Enter>
-nnoremap === i<space>=========================================
+nnoremap === i<space> =========================================
 
 " grep for key word under cursor
 "nnoremap <leader>g :silent execute \"grep! -R \" . shellescape(expand("<cWORD>")) . \" .\"<cr>:copen<cr>
@@ -82,7 +82,7 @@ nnoremap === i<space>=========================================
 
 let maplocalleader='\\'
 
-" Javascript filetype settings ========================================= {{{
+" Javascript filetype settings {{{
 augroup ft_javascript
     autocmd!
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
@@ -91,7 +91,7 @@ augroup ft_javascript
 augroup END
 " }}}
 
-" Python file settings ======================================== {{{
+" Python file settings {{{
 augroup ft_python
     autocmd!
     autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
@@ -103,7 +103,7 @@ augroup ft_python
 augroup END
 " }}}
 
-" Vimscript file settings ========================================= {{{
+" Vimscript file settings {{{
 augroup ft_vim
     autocmd!
     autocmd FileType vim        nnoremap <buffer> <localleader>c I"<esc>
@@ -112,7 +112,7 @@ augroup ft_vim
 augroup END
 " }}}
 
-" C/CPP file settings ========================================== {{{
+" C/CPP file settings {{{
 augroup ft_c_cpp
     autocmd!
     autocmd FileType c,cpp      iabbrev <buffer> iff if ( )<esc>hi
@@ -122,20 +122,20 @@ augroup ft_c_cpp
 augroup END
 " }}}
 
-" C file settings ========================================= {{{
+" C file settings {{{
 augroup ft_c
     autocmd!
     autocmd FileType c          nnoremap <buffer> <localleader>h I#include<<esc>$a.h>
-augroup END 
+augroup END
 " }}}
 
-" higlight extra white space  ========================================= {{{
+" higlight extra white space  {{{
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 nnoremap <leader>we :match ExtraWhitespace /.\%>80v/<CR>
 nnoremap <leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
 " }}}
 
-" Special file settings ========================================= {{{
+" Special file settings {{{
 augroup ft_txt_spc
     autocmd!
     autocmd BufRead * if expand('%:t') == '~~' | setlocal foldmethod=marker | endif
@@ -156,4 +156,13 @@ function! CommentOutVisualBlock(comment_string)
         endif
     endfor
 endfunction
+
+" Trim trailing white space {{{
+nnoremap <leader>trim :call TrimTrailingWhiteSpace()<cr>
+function! TrimTrailingWhiteSpace()
+    let cursor_pos = getpos(".")
+    execute(':%s:\v\s+$::g')
+    call setpos('.', cursor_pos)
+endfunction
+" }}}
 

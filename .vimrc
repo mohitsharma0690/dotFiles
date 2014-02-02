@@ -99,7 +99,6 @@ augroup ft_python
 
     "autocmd FileType python setlocal colorcolumn=81
     "autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
-    autocmd BufWritePost *.py silent! !ctags -R &
 augroup END
 " }}}
 
@@ -118,7 +117,6 @@ augroup ft_c_cpp
     autocmd FileType c,cpp      iabbrev <buffer> iff if ( )<esc>hi
     autocmd FileType c,cpp      nnoremap <buffer> <localleader>c I//<esc>
     autocmd FileType c,cpp      vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock("//")<cr>
-    autocmd BufWritePost *.c,*.cpp,*.h silent! !ctags -R &
 augroup END
 " }}}
 

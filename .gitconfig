@@ -2,7 +2,7 @@
 	name = Mohit
 	user = mohitsharma0690
 	email = mohit@pocketgems.com
-	editor = /usr/bin/vim
+    editor = /Applications/MacVim.app/Contents/MacOS/Vim
 [color]
 	branch = always
 	ui = true
@@ -39,7 +39,7 @@
 	trustExitCode = true
 [core]
 	excludesfile = /Users/mohitsharma/.gitignore_global
-	editor = /usr/bin/vim
+    editor = /Applications/MacVim.app/Contents/MacOS/Vim
 [branch]
 	autosetupmerge = true
 [gui]

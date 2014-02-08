@@ -56,12 +56,12 @@ alias pgg="cd ~/projects/pocketGems/"
 autoload -U compinit
 compinit
 
-# 
+#
 # #Lets set some options
 setopt correctall
 setopt autocd
 setopt auto_resume
-  
+
 #  ## Enables the extgended globbing features
 #  These are awesome
 setopt extendedglob
@@ -85,3 +85,9 @@ bindkey '^[[6~' vi-forward-blank-word  # Page Down"]]]]"
 alias gl1="gl | head -1 | pbcopy"
 
 alias ctags=/usr/local/bin/ctags
+
+# add python bindings for clang to search path
+# export PYTHONPATH="${PYTHONPATH}:/Users/mohitsharma/projects/python-clang-bindings"
+
+# add libclang to dynamic load path
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/"

@@ -8,7 +8,8 @@ call pathogen#infect()
 set nocompatible
 set nu
 
-" set the cursor to a vertical line in insert mode and a solid block in command mode
+" set the cursor to a vertical line in insert mode and
+" a solid block in command mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
@@ -52,8 +53,8 @@ let g:tagbar_usearrows = 1
 nnoremap <leader>m :TagbarToggle<CR>
 
 " SuperTab
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
+" au FileType python set omnifunc=pythoncomplete#Complete
+" let g:SuperTabDefaultCompletionType = "context"
 
 " Quick Open .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -163,4 +164,72 @@ function! TrimTrailingWhiteSpace()
     call setpos('.', cursor_pos)
 endfunction
 " }}}
+
+" You Complete me settings
+let g:ycm_global_ycm_extra_conf =
+            \ '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+
+hi SpellBad ctermfg=blue ctermbg=black guifg=#87d7d7 guibg=#6c6c6c
+hi SpellCap ctermfg=blue ctermbg=black guifg=#87d7d7 guibg=#6c6c6c
+
+
+" go to header from implementation and vice-versa
+" languages supported C, C++, Objective-C, Objective-C++
+" Use <Ctrl><Cmd><Enter> to toggle between headers and implementation
+augroup ft_c_cpp_objc
+    autocmd!
+    autocmd FileType c,cpp,objc,objcpp nnoremap <C-D-CR> :<c-u>call
+                \ OpenHeaderOrImplementation()<cr>
+augroup END
+
+function! OpenHeaderOrImplementation()
+    let fileName = expand('%:p')
+    let fileNameList = split(fileName, '\v\.')
+    let fileType = &filetype
+    let implementationExtensions = ['c', 'C', 'cpp', 'm', 'mm', 'cc']
+    let headerExtensions = ['h', 'H', 'hh']
+    let allExtensions = []
+    let filePathWithName = fileNameList[0]
+
+    if l:fileType == 'c' || l:fileType == 'cpp' || l:fileType == 'objc' ||
+                \ l:fileType == 'objcpp'
+        if index(l:headerExtensions, l:fileNameList[1]) != -1
+            let l:allExtensions = l:implementationExtensions
+        elseif index(l:implementationExtensions, l:fileNameList[1]) != -1
+            let l:allExtensions = l:headerExtensions
+        endif
+        let fileExtensionToFind = ''
+
+python << EOF
+import os
+
+# find out what extension to load
+file_extensions = vim.eval("allExtensions")
+file_path_with_name = vim.eval("filePathWithName")
+all_file_names = [file_path_with_name + '.' + extension
+            \ for extension in file_extensions]
+does_file_exist = [os.path.exists(path) for path in all_file_names]
+if (sum(does_file_exist) != 1):
+    print "Multiple files exist at location will choose first one"
+elif (sum(does_file_exist) == 0):
+    print "Couldn't find any file with proper extension"
+idx = 0
+for i in does_file_exist:
+    if i != 0:
+        command_to_execute = "let l:fileExtensionToFind = '{0}'"
+                    \ .format(file_extensions[idx])
+        vim.command(command_to_execute)
+        break;
+    idx += 1
+EOF
+    endif
+
+    if len(l:fileExtensionToFind) > 0
+        let fileNameToFind = l:fileNameList[0] . '.' . l:fileExtensionToFind
+        execute('find ' . l:fileNameToFind)
+    else
+        echom "couldnt find filename"
+    endif
+
+endfunction
 

@@ -98,8 +98,8 @@ augroup ft_python
     autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
     autocmd FileType python     vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock("#")<cr>
 
-    "autocmd FileType python setlocal colorcolumn=81
-    "autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
+    autocmd FileType python setlocal colorcolumn=81
+    autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
 augroup END
 " }}}
 
@@ -233,3 +233,9 @@ EOF
 
 endfunction
 
+" set cursor line highlight color
+hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+
+" open quick-fix window always as a bottom-left window {{{
+autocmd FileType qf wincmd J
+" }}

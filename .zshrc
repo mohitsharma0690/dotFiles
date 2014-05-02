@@ -91,3 +91,7 @@ alias ctags=/usr/local/bin/ctags
 
 # add libclang to dynamic load path
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
+
+# add the jsc source for javascript debugging (better to create a symlink) 
+# alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc"
+

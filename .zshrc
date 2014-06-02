@@ -95,3 +95,5 @@ export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/Applications/Xcode.app/Contents/Deve
 # add the jsc source for javascript debugging (better to create a symlink) 
 # alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc"
 
+# Don't show warnings while running gitk
+alias gitk='gitk 2>/dev/null'

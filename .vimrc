@@ -24,6 +24,9 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set guifont=Menlo\ Regular:h14
+set splitright
+set splitbelow
+nnoremap vspt :let word=expand("<cword>")<CR>:vsp<CR>:exe "tag" word<CR>
 
 " Nerdtree {{{
 " autocmd vimenter * NERDTree
@@ -238,4 +241,11 @@ hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=whi
 
 " open quick-fix window always as a bottom-left window {{{
 autocmd FileType qf wincmd J
-" }}
+" }}}
+
+" tags customization {{{
+nnoremap <leader>tt :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+nnoremap <leader>tv :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+set tags=./tags;/
+" }}}
+

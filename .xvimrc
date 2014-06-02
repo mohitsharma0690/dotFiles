@@ -8,3 +8,5 @@ set guioptions=r
 " Quick Mappings
 nnoremap H ^
 nnoremap L $
+
+set debug

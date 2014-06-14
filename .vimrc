@@ -23,7 +23,7 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-set guifont=Menlo\ Regular:h14
+set guifont=Menlo\ Regular\ for\ Powerline:h14
 set splitright
 set splitbelow
 nnoremap vspt :let word=expand("<cword>")<CR>:vsp<CR>:exe "tag" word<CR>
@@ -247,5 +247,20 @@ autocmd FileType qf wincmd J
 nnoremap <leader>tt :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 nnoremap <leader>tv :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 set tags=./tags;/
+" }}}
+
+" powerline {{{
+
+if has('gui_running') == 0
+    set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+    set laststatus=2
+else
+    set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+    let g:Powerline_symbols = 'fancy'
+    set laststatus=2
+    set encoding=utf-8
+    set fillchars+=stl:\ ,stlnc:\
+endif
+
 " }}}
 

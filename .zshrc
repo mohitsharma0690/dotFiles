@@ -46,8 +46,8 @@ alias gco="git checkout "
 alias gl="git log"
 alias gsubm="git submodule update --init --recursive"
 alias simlock="cd /Users/mohitsharma/Library/Application\ Support/iPhone\ Simulator/6.1/"
-alias simcp="cp -p ~/rescue.sqlite ./"
-alias simsave="cp -p rescue.sqlite ~/rescue.sqlite"
+alias simcp="cp -p ~/dragons3d.sqlite ./"
+alias simsave="cp -p dragons3d.sqlite ~/dragons3d.sqlite"
 alias pg="ping google.com"
 alias pb="ping bing.com"
 alias pgg="cd ~/projects/pocketGems/"
@@ -97,3 +97,4 @@ export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/Applications/Xcode.app/Contents/Deve
 
 # Don't show warnings while running gitk
 alias gitk='gitk 2>/dev/null'
+

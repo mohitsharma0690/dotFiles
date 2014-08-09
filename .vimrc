@@ -264,3 +264,14 @@ endif
 
 " }}}
 
+let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
+
+nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+
+" dictionary {{{
+    function! AddDictionary()   
+        execute('set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words')
+        execute('set complete-=k complete+=k')
+    endfunction
+" }}}

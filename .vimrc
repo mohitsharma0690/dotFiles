@@ -159,6 +159,23 @@ function! CommentOutVisualBlock(comment_string)
     endfor
 endfunction
 
+"change commit status while rebasing
+function! ChangeCommitStatus(char_to_prepend)
+    let firstline = line("'<'")
+    let lastline = line("'>'")
+    for linenum in range(firstline, lastline)
+        let curr_line = getline(linenum)
+        if (len(curr_line))
+            let beginning_of_line = curr_line[0]
+            let first_space_index = match(curr_line, " ")
+            if (first_space_index != -1)
+                let end_of_line = curr_line[abs(first_space_index):]
+                call setline(linenum, a:char_to_prepend . end_of_line)
+            endif
+        endif
+    endfor
+endfunction
+
 " Trim trailing white space {{{
 nnoremap <leader>trim :call TrimTrailingWhiteSpace()<cr>
 function! TrimTrailingWhiteSpace()
@@ -264,13 +281,13 @@ endif
 
 " }}}
 
-let g:syntastic_check_on_wq = 0
-let g:syntastic_check_on_open = 0
-
-nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_check_on_open = 0
+"
+"nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
 " dictionary {{{
-    function! AddDictionary()   
+    function! AddDictionary()
         execute('set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words')
         execute('set complete-=k complete+=k')
     endfunction

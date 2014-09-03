@@ -44,3 +44,5 @@
 	autosetupmerge = true
 [gui]
 	recentrepo = /Users/mohitsharma/projects/pocketGems/rescuerangers
+[push]
+	default = simple

@@ -88,6 +88,7 @@ alias ctags=/usr/local/bin/ctags
 
 # add python bindings for clang to search path
 # export PYTHONPATH="${PYTHONPATH}:/Users/mohitsharma/projects/python-clang-bindings"
+export PYTHONPATH="${PYTHONPATH}:/usr/local/google_appengine" # add appengine
 
 # add libclang to dynamic load path
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
@@ -98,3 +99,4 @@ export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/Applications/Xcode.app/Contents/Deve
 # Don't show warnings while running gitk
 alias gitk='gitk 2>/dev/null'
 
+alias deploy_dragons='python deploy.py -m smr --version mohit dragonsong --skip'

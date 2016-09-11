@@ -1,10 +1,21 @@
-call pathogen#infect()
-call pathogen#helptags()
-filetype off
-syntax on
-filetype plugin indent on
-call pathogen#infect()
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'https://github.com/altercation/vim-colors-solarized.git'
+Plugin 'https://github.com/kien/ctrlp.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
+Bundle 'taglist.vim'
+
+call vundle#end()            " required
+
+filetype plugin indent on    " required
+
+syntax on
 set nocompatible
 set nu
 
@@ -30,7 +41,7 @@ nnoremap vspt :let word=expand("<cword>")<CR>:vsp<CR>:exe "tag" word<CR>
 
 " Nerdtree {{{
 " autocmd vimenter * NERDTree
-nnoremap <leader>m :NERDTreeToggle<CR>
+nnoremap <leader>ne :NERDTreeToggle<CR>
 
  let NERDTreeShowBookmarks=1
  let NERDTreeChDirMode=0
@@ -42,13 +53,15 @@ nnoremap <leader>m :NERDTreeToggle<CR>
  let g:nerdtree_tabs_open_on_gui_startup=0
 
 " Auto-close nerd-tree if it is the only window open
- autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
 
-"colorscheme Tomorrow
+" colorscheme Tomorrow
+colorscheme solarized
 if has('gui_running')
+    set background=light
+else
     set background=dark
-    colorscheme Codeschool
 endif
 
 " Tagbar
@@ -103,6 +116,7 @@ augroup ft_python
 
     autocmd FileType python setlocal colorcolumn=81
     autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
+    set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
 augroup END
 " }}}
 

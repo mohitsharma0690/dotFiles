@@ -32,7 +32,7 @@ alias ohmyzsh="mate ~/.oh-my-zsh"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python ruby git-extras git-flow rails zsh-syntax-highlighting)
+plugins=(git python pip ruby git-extras git-flow osx rails zsh-syntax-highlighting z colored-man-pages colorize)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,7 +88,7 @@ alias ctags=/usr/local/bin/ctags
 
 # add python bindings for clang to search path
 # export PYTHONPATH="${PYTHONPATH}:/Users/mohitsharma/projects/python-clang-bindings"
-export PYTHONPATH="${PYTHONPATH}:/usr/local/google_appengine" # add appengine
+#export PYTHONPATH="${PYTHONPATH}:/usr/local/google_appengine" # add appengine
 
 # add libclang to dynamic load path
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
@@ -100,3 +100,15 @@ export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/Applications/Xcode.app/Contents/Deve
 alias gitk='gitk 2>/dev/null'
 
 alias deploy_dragons='python deploy.py -m smr --version mohit dragonsong --skip'
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+bindkey "OA" history-search-backward # Up
+bindkey "OB" history-search-forward # Down
+bindkey 'OA' history-beginning-search-backward
+bindkey 'OB' history-beginning-search-forward
+
+alias src_ROS='cd /opt/ros/indigo && source setup.sh'
+
+# add Annaconda to PATH
+export PATH="$PATH:/Users/mohit/bin/anaconda/bin" 

@@ -112,3 +112,18 @@ alias src_ROS='cd /opt/ros/indigo && source setup.sh'
 
 # add Annaconda to PATH
 export PATH="$PATH:/Users/mohit/bin/anaconda/bin" 
+
+# Add Matlab to PATH
+export PATH="$PATH:/Applications/MATLAB_R2015a.app/bin"
+
+. /Users/mohit/Projects/torch/install/bin/torch-activate
+
+# Add alias for Lab work
+alias ssh_lab_1='ssh mohits1@128.2.194.56'
+alias ssh_lab_2='ssh mohit@128.2.194.87'
+
+# Add custom binaries to PATH
+export PATH="$PATH:/Users/mohit/bin"
+
+export PATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH
+

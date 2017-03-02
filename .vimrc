@@ -1,10 +1,9 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
+set nocompatible              " be iMproved, required filetype off                  " required 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'morhetz/gruvbox'
 Plugin 'https://github.com/altercation/vim-colors-solarized.git'
 Plugin 'https://github.com/kien/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
@@ -38,6 +37,7 @@ set guifont=Menlo\ Regular\ for\ Powerline:h14
 set splitright
 set splitbelow
 nnoremap vspt :let word=expand("<cword>")<CR>:vsp<CR>:exe "tag" word<CR>
+inoremap ;; <Esc>
 
 " Nerdtree {{{
 " autocmd vimenter * NERDTree
@@ -57,7 +57,8 @@ nnoremap <leader>ne :NERDTreeToggle<CR>
 " }}}
 
 " colorscheme Tomorrow
-colorscheme solarized
+" colorscheme solarized
+colorscheme gruvbox
 if has('gui_running')
     set background=light
 else
@@ -116,7 +117,7 @@ augroup ft_python
 
     autocmd FileType python setlocal colorcolumn=81
     autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
-    set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
+    set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 augroup END
 " }}}
 
@@ -305,4 +306,11 @@ endif
         execute('set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words')
         execute('set complete-=k complete+=k')
     endfunction
+" }}}
+
+" Make Tabs 2 spaces
+  function! MakeTabs2Spaces()
+    set shiftwidth=2
+    set tabstop=2
+  endfunction
 " }}}

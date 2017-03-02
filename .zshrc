@@ -111,7 +111,7 @@ bindkey 'OB' history-beginning-search-forward
 alias src_ROS='cd /opt/ros/indigo && source setup.sh'
 
 # add Annaconda to PATH
-export PATH="$PATH:/Users/mohit/bin/anaconda/bin" 
+export PATH="/Users/mohit/bin/anaconda/bin:$PATH" 
 
 # Add Matlab to PATH
 export PATH="$PATH:/Applications/MATLAB_R2015a.app/bin"
@@ -119,11 +119,36 @@ export PATH="$PATH:/Applications/MATLAB_R2015a.app/bin"
 . /Users/mohit/Projects/torch/install/bin/torch-activate
 
 # Add alias for Lab work
-alias ssh_lab_1='ssh mohits1@128.2.194.56'
-alias ssh_lab_2='ssh mohit@128.2.194.87'
+alias ssh_lab_1='ssh -X mohits1@128.2.194.56'
+alias ssh_lab_2='ssh -X mohit@128.2.194.87'
+alias ssh_lab_3='ssh -X mohit@128.2.194.84'
 
 # Add custom binaries to PATH
 export PATH="$PATH:/Users/mohit/bin"
+# Prefer homebrew stuff (NOTE This forces to use brew python instead of /usr/bin/python
+export PATH="/usr/local/bin:/usr/local/Cellar:$PATH"
 
 export PATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH
+
+# Make YouCompleteMe work. YCM was compiled with system python. I've to use homebrew pyton for theano etc.
+# So to make all of this work together do this.
+
+export PYTHONPATH="/Users/mohit/bin/anaconda/lib/python2.7/site-packages"
+export PYTHONPATH="$PATH:/usr/local/Cellar/opencv3/HEAD-157a90a_4/lib/python2.7/site-packages"
+
+alias theano_python_gpu='THEANO_FLAGS=blas.ldflags="-L/usr/lib/ -lblas",mode=FAST_RUN,device=gpu,floatX=float32,exception_verbosity=high python'
+alias theano_python='THEANO_FLAGS=blas.ldflags="-L/usr/local/Cellar/openblas/0.2.18_2/lib/ -lblas",floatX=float32 python'
+
+# NOTE: I had earlier installed brew python instead of system python. The brew
+# python lives in /usr/local/bin/python. The site packages for brew python live
+# in /usr/local/lib/python2.7/site-packages.
+alias anaconda_python='~/bin/anaconda/bin/python'
+alias brew_python='/usr/local/bin/python'
+
+alias run_http_server='python -m SimpleHTTPServer'
+
+# We use virtualenv for brew python (opencv is installed using this)
+source /usr/local/bin/virtualenvwrapper.sh
+
+export DYLD_LIBRARY_PATH=/Users/mohit/Projects/OpenCV_Install/opencv/build/lib:$DYLD_LIBRARY_PATH
 

@@ -37,6 +37,12 @@ Bundle 'kien/ctrlp.vim'
 " Swift syntax highlighting
 Bundle 'keith/swift.vim'
 
+# Add gruvobox
+Plugin 'morhetz/gruvbox'
+
+# Add YCM
+Plugin 'Valloric/YouCompleteMe'
+
 " Taglist for browsing
 Plugin 'taglist.vim'
 

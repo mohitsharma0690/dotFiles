@@ -93,13 +93,16 @@ nnoremap <leader>ntt :NERDTreeToggle<CR>
 " }}}
 augroup end
 
-" TODO(mohit): Fix this theme
 " colorscheme Tomorrow
+" colorscheme solarized
+colorscheme gruvbox
 if has('gui_running')
-   " set background=dark
-"   colorscheme Codeschool
-   colorscheme solarized
+    set background=light
+else
+    set background=dark
+    " set background=light
 endif
+
 
 set guifont=Menlo\ Regular\ for\ Powerline:h14
 

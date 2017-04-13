@@ -11,6 +11,10 @@ ZSH_THEME="robbyrussell"
 # alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Add zfunc to be loaded
+fpath=(~/.zfunc "${fpath[@]}")
+autoload -Uz last_mod_dir
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -119,7 +123,7 @@ export PATH="$PATH:/Applications/MATLAB_R2015a.app/bin"
 . /Users/mohit/Projects/torch/install/bin/torch-activate
 
 # Add alias for Lab work
-alias ssh_lab_1='ssh -X mohits1@128.2.194.56'
+alias ssh_lab_1='ssh -X mohit@128.2.194.56'
 alias ssh_lab_2='ssh -X mohit@128.2.194.87'
 alias ssh_lab_3='ssh -X mohit@128.2.194.84'
 
@@ -151,4 +155,21 @@ alias run_http_server='python -m SimpleHTTPServer'
 source /usr/local/bin/virtualenvwrapper.sh
 
 export DYLD_LIBRARY_PATH=/Users/mohit/Projects/OpenCV_Install/opencv/build/lib:$DYLD_LIBRARY_PATH
+
+# $1 = type; 0 - both, 1 - tab, 2 - title
+# rest = text
+setTerminalText () {
+    # echo works in bash & zsh
+    local mode=$1 ; shift
+    echo -ne "\033]$mode;$@\007"
+}
+stt_both  () { setTerminalText 0 $@; }
+stt_tab   () { setTerminalText 1 $@; }
+stt_title () { setTerminalText 2 $@; }
+
+# Disable iterm2 from automatically changing window/tab title
+DISABLE_AUTO_TITLE="true" 
+
+export MUJOCO_PY_MJKEY_PATH=/path/to/mjkey.txt
+export MUJOCO_PY_MJPRO_PATH=/path/to/mjpro131
 

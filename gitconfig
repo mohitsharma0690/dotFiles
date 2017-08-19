@@ -1,8 +1,8 @@
 [user]
 	name = Mohit
 	user = mohitsharma0690
-	email = mohit@pocketgems.com
-    editor = /Applications/MacVim.app/Contents/MacOS/Vim
+	email = mohit.sharma0690@gmail.com
+    editor = vim
 [color]
 	branch = always
 	ui = true
@@ -31,18 +31,7 @@
 	renames = copies
 [difftool "diffmerge"]
     cmd = diffmerge $LOCAL $REMOTE
-[difftool "sourcetree"]
-	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
-	trustExitCode = true
-[core]
-	excludesfile = /Users/mohitsharma/.gitignore_global
-    editor = /Applications/MacVim.app/Contents/MacOS/Vim
 [branch]
 	autosetupmerge = true
-[gui]
-	recentrepo = /Users/mohitsharma/projects/pocketGems/rescuerangers
 [push]
 	default = simple

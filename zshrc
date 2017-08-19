@@ -36,7 +36,7 @@ autoload -Uz last_mod_dir
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python pip ruby git-extras git-flow osx rails zsh-syntax-highlighting z colored-man-pages colorize)
+plugins=(git python pip ruby git-extras git-flow osx rails zsh-syntax-highlighting z colored-man-pages colorize vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -172,4 +172,8 @@ DISABLE_AUTO_TITLE="true"
 
 export MUJOCO_PY_MJKEY_PATH=/path/to/mjkey.txt
 export MUJOCO_PY_MJPRO_PATH=/path/to/mjpro131
+
+export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64"
+export CUDA_HOME=/usr/local/cuda-8.0
 

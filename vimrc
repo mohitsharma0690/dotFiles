@@ -15,6 +15,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install solarized
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'jlanzarotta/bufexplorer'
+Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
@@ -22,7 +23,6 @@ Bundle 'kien/ctrlp.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'christoomey/vim-tmux-navigator'
-" Taglist for browsing
 Plugin 'taglist.vim'
 
 " All of your Plugins must be added before the following line

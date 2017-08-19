@@ -9,40 +9,19 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Bundle 'tpope/vim-fugitive'
-
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
 " Install solarized
 Bundle 'altercation/vim-colors-solarized'
-
-" Install bufexpolrer
 Bundle 'jlanzarotta/bufexplorer'
-
-" Install powerline
 Bundle 'Lokaltog/vim-powerline'
-
 Bundle 'scrooloose/syntastic'
-
 Bundle 'scrooloose/nerdtree'
-
 Bundle 'kien/ctrlp.vim'
-
-" Swift syntax highlighting
-Bundle 'keith/swift.vim'
-
-# Add gruvobox
 Plugin 'morhetz/gruvbox'
-
-# Add YCM
 Plugin 'Valloric/YouCompleteMe'
-
+Plugin 'christoomey/vim-tmux-navigator'
 " Taglist for browsing
 Plugin 'taglist.vim'
 

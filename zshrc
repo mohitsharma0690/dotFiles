@@ -170,10 +170,14 @@ stt_title () { setTerminalText 2 $@; }
 # Disable iterm2 from automatically changing window/tab title
 DISABLE_AUTO_TITLE="true" 
 
-export MUJOCO_PY_MJKEY_PATH=/path/to/mjkey.txt
-export MUJOCO_PY_MJPRO_PATH=/path/to/mjpro131
+export MUJOCO_PY_MJKEY_PATH=~/.mujoco/mjkey.txt
+export MUJOCO_PY_MJPRO_PATH=~/.mujoco/mjpro150
 
 export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64"
 export CUDA_HOME=/usr/local/cuda-8.0
 
+mount_klab () {
+    mkdir -p /Volumes/klab"$1" && sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/id_rsa mohit@"$2":/ /Volumes/klab"$1"
+}
+f() { CUDA_VISIBLE_DEVICES="$1" python -m pdb; }

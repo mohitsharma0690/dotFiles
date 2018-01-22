@@ -82,7 +82,9 @@ else
 endif
 
 
-set guifont=Menlo\ Regular\ for\ Powerline:h14
+" Specify font for Powerline (Additionally add font size)
+" set guifont=Menlo\ Regular\ for\ Powerline:h14
+set guifont=Menlo\ Regular\ for\ Powerline
 
 " For solarized plugin (color scheme)
 " https://github.com/altercation/vim-colors-solarized
@@ -93,11 +95,14 @@ nnoremap <leader>m :TagbarToggle<CR>
 
 " SuperTab
 " au FileType python set omnifunc=pythoncomplete#Complete
-" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = \"context\"
 
 " Quick Open .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Fast escape
+inoremap ;; <Esc>
 
 " Quick Mappings {{{
 nnoremap H ^
@@ -176,7 +181,7 @@ nnoremap <leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
 " Special file settings {{{
 augroup ft_txt_spc
     autocmd!
-    autocmd BufRead * if expand('%:t') == '~~' | setlocal foldmethod=marker | endif
+    autocmd BufRead * if expand('%:t') == '~~' | setlocal foldmethod=marker | e
     autocmd BufRead,BufNewFile BUILD set filetype=python
 augroup END
 " }}}
@@ -310,7 +315,7 @@ if has('gui_running') == 0
     set laststatus=2
 else
     set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-    let g:Powerline_symbols = 'fancy'
+    " let g:Powerline_symbols = 'fancy'
     set laststatus=2
     set encoding=utf-8
     set fillchars+=stl:\ ,stlnc:\
@@ -318,10 +323,15 @@ endif
 
 " }}}
 
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_check_on_open = 0
-"
-"nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+" Syntastic errors (
+"let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0 " Don't auto open/close location list
+let g:syntastic_check_on_wq = 0
+" Will run syntax check when buffer first loaded
+let g:syntastic_check_on_open = 0
+let g:syntastic_mode="passive"
+" let g:syntastic_enable_signs=0
+" nnoremap <C-w>E :SyntasticCheck<CR>
 
 " CtrlP customization {{{
     let g:ctrlp_map = '<c-p>'
@@ -350,9 +360,9 @@ let Tlist_Show_One_File = 1
 " Open the Taglist window by default when VIM opens.
 let Tlist_Auto_Open = 1
 
-" Make Tabs 2 spaces
-    function! MakeTabs2Spaces()
-        set shiftwidth=2
-        set tabstop=2
-    endfunction
+" Make Tabs 2 spaces {{{
+function! MakeTabs2Spaces()
+    set shiftwidth=2
+    set tabstop=2
+endfunction
 " }}}

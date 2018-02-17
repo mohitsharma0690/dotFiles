@@ -1,38 +1,25 @@
 set nocompatible              " be iMproved, required
-filetype off
+filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install solarized
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'jlanzarotta/bufexplorer'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'https://github.com/altercation/vim-colors-solarized.git'
+Plugin 'https://github.com/kien/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'majutsushi/tagbar'
+Bundle 'taglist.vim'
 
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+filetype plugin indent on    " required
+
+syntax on
 set nocompatible
 set nu
-
-syntax enable
-
-filetype plugin indent on
 
 " set the cursor to a vertical line in insert mode and
 " a solid block in command mode
@@ -49,45 +36,40 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
+" set guifont=Menlo\ Regular\ for\ Powerline:h14
 set splitright
 set splitbelow
 nnoremap vspt :let word=expand("<cword>")<CR>:vsp<CR>:exe "tag" word<CR>
+inoremap ;; <Esc>
 
 " Nerdtree {{{
-augroup plugin_NERDTree
-nnoremap <leader>ntt :NERDTreeToggle<CR>
+" autocmd vimenter * NERDTree
+nnoremap <leader>ne :NERDTreeToggle<CR>
 
  let NERDTreeShowBookmarks=1
  let NERDTreeChDirMode=0
  let NERDTreeQuitOnOpen=1
  let NERDTreeMouseMode=2
  let NERDTreeShowHidden=1
- let NERDTreeIgnore=['\.pyc','\~$','\.swo$','\.swp$','\.git','\.hg','\.svn','\.bzr', '\.o', '\.d']
+ let NERDTreeIgnore=['\.pyc','\~$','\.swo$','\.swp$','\.git','\.hg','\.svn','\.bzr']
  let NERDTreeKeepTreeInNewTab=1
  let g:nerdtree_tabs_open_on_gui_startup=0
 
 " Auto-close nerd-tree if it is the only window open
- autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
-augroup end
 
 " colorscheme Tomorrow
 " colorscheme solarized
 colorscheme gruvbox
 if has('gui_running')
-    set background=dark
+    set background=light
 else
     set background=dark
     " set background=light
 endif
-
-
-" Specify font for Powerline (Additionally add font size)
-" set guifont=Menlo\ Regular\ for\ Powerline:h14
-set guifont=Menlo\ Regular\ for\ Powerline
-
-" For solarized plugin (color scheme)
-" https://github.com/altercation/vim-colors-solarized
+set t_Co=256                        " force vim to use 256 colors
+let g:solarized_termcolors=256      " use solarized 256 fallback
 
 " Tagbar
 let g:tagbar_usearrows = 1
@@ -95,14 +77,11 @@ nnoremap <leader>m :TagbarToggle<CR>
 
 " SuperTab
 " au FileType python set omnifunc=pythoncomplete#Complete
-" let g:SuperTabDefaultCompletionType = \"context\"
+" let g:SuperTabDefaultCompletionType = "context"
 
 " Quick Open .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
-" Fast escape
-inoremap ;; <Esc>
 
 " Quick Mappings {{{
 nnoremap H ^
@@ -136,6 +115,18 @@ augroup ft_javascript
 augroup END
 " }}}
 
+" Lua file settings {{{
+augroup ft_lua
+    autocmd!
+    autocmd FileType lua nnoremap <buffer> <localleader>c I#<esc>
+    autocmd FileType lua vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock("--")<cr>
+
+    autocmd FileType lua setlocal colorcolumn=81
+    " change to red for light background
+    autocmd FileType lua hi colorcolumn ctermbg=red guibg=#acd1e9
+augroup END
+" }}}
+"
 " Python file settings {{{
 augroup ft_python
     autocmd!
@@ -143,7 +134,8 @@ augroup ft_python
     autocmd FileType python     vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock("#")<cr>
 
     autocmd FileType python setlocal colorcolumn=81
-    autocmd FileType python highlight colorcolumn ctermbg=white guibg=#acd1e9
+    autocmd FileType python hi colorcolumn ctermbg=red guibg=#acd1e9
+    set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
 augroup END
 " }}}
 
@@ -181,8 +173,7 @@ nnoremap <leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
 " Special file settings {{{
 augroup ft_txt_spc
     autocmd!
-    autocmd BufRead * if expand('%:t') == '~~' | setlocal foldmethod=marker | e
-    autocmd BufRead,BufNewFile BUILD set filetype=python
+    autocmd BufRead * if expand('%:t') == '~~' | setlocal foldmethod=marker | endif
 augroup END
 " }}}
 "
@@ -315,7 +306,7 @@ if has('gui_running') == 0
     set laststatus=2
 else
     set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-    " let g:Powerline_symbols = 'fancy'
+    let g:Powerline_symbols = 'fancy'
     set laststatus=2
     set encoding=utf-8
     set fillchars+=stl:\ ,stlnc:\
@@ -323,28 +314,9 @@ endif
 
 " }}}
 
-" Syntastic errors (
-"let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0 " Don't auto open/close location list
-let g:syntastic_check_on_wq = 0
-" Will run syntax check when buffer first loaded
-let g:syntastic_check_on_open = 0
-let g:syntastic_mode="passive"
-" let g:syntastic_enable_signs=0
-" nnoremap <C-w>E :SyntasticCheck<CR>
-
-" CtrlP customization {{{
-    let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_cmd = 'CtrlP'
-    " Search for .git to search better
-    let g:ctrlp_working_path_mode = 'ra'
-    " Ignore files for MacOSX/Linux
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
-    " Custom file listing command
-    " let g:ctrlp_user_command = 'find %s -type f'
-" }}}
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_check_on_open = 0
+let g:syntastic_mode_map = { 'mode': 'passive' }
 
 " dictionary {{{
     function! AddDictionary()
@@ -353,16 +325,17 @@ let g:syntastic_mode="passive"
     endfunction
 " }}}
 
-" Taglist customizations
-let Tlist_Use_Right_Window = 1
-" Show Tags for only the current buffer.
-let Tlist_Show_One_File = 1
-" Open the Taglist window by default when VIM opens.
-let Tlist_Auto_Open = 1
+" ctrl-p settings
+let g:ctrlp_max_files = 0 
+let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll|swp|h5|t7|png|jpg|html)$',
+      \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+      \ }
 
-" Make Tabs 2 spaces {{{
-function! MakeTabs2Spaces()
+" Make Tabs 2 spaces
+  function! MakeTabs2Spaces()
     set shiftwidth=2
     set tabstop=2
-endfunction
+  endfunction
 " }}}

@@ -1,4 +1,4 @@
-# Path to your oh-my-zsh configuration.
+#  Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -95,7 +95,8 @@ alias ctags=/usr/local/bin/ctags
 #export PYTHONPATH="${PYTHONPATH}:/usr/local/google_appengine" # add appengine
 
 # add libclang to dynamic load path
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/home/mohit/.mujoco/mjpro150/bin"
+
 
 # add the jsc source for javascript debugging (better to create a symlink) 
 # alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc"
@@ -114,8 +115,6 @@ bindkey 'OB' history-beginning-search-forward
 
 alias src_ROS='cd /opt/ros/indigo && source setup.sh'
 
-# add Annaconda to PATH
-export PATH="/Users/mohit/bin/anaconda/bin:$PATH" 
 
 # Add Matlab to PATH
 export PATH="$PATH:/Applications/MATLAB_R2015a.app/bin"
@@ -126,6 +125,9 @@ export PATH="$PATH:/Applications/MATLAB_R2015a.app/bin"
 alias ssh_lab_1='ssh -X mohit@128.2.194.56'
 alias ssh_lab_2='ssh -X mohit@128.2.194.87'
 alias ssh_lab_3='ssh -X mohit@128.2.194.84'
+
+# add Annaconda to PATH
+export PATH="/home/mohit/anaconda3/bin:$PATH" 
 
 # Add custom binaries to PATH
 export PATH="$PATH:/Users/mohit/bin"
@@ -146,8 +148,9 @@ alias theano_python='THEANO_FLAGS=blas.ldflags="-L/usr/local/Cellar/openblas/0.2
 # NOTE: I had earlier installed brew python instead of system python. The brew
 # python lives in /usr/local/bin/python. The site packages for brew python live
 # in /usr/local/lib/python2.7/site-packages.
-alias anaconda_python='~/bin/anaconda/bin/python'
-alias brew_python='/usr/local/bin/python'
+alias anaconda_python='/home/mohit/anaconda3/bin/python'
+alias brew_python='/usr/bin/python'
+export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python'
 
 alias run_http_server='python -m SimpleHTTPServer'
 
@@ -170,14 +173,12 @@ stt_title () { setTerminalText 2 $@; }
 # Disable iterm2 from automatically changing window/tab title
 DISABLE_AUTO_TITLE="true" 
 
-export MUJOCO_PY_MJKEY_PATH=~/.mujoco/mjkey.txt
-export MUJOCO_PY_MJPRO_PATH=~/.mujoco/mjpro150
+export MUJOCO_PY_MJKEY_PATH=/home/mohit/.mujoco/mjkey.txt
+export MUJOCO_PY_MJPRO_PATH=/home/mohit/.mujoco/mjpro150
 
 export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64"
 export CUDA_HOME=/usr/local/cuda-8.0
 
-mount_klab () {
-    mkdir -p /Volumes/klab"$1" && sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/id_rsa mohit@"$2":/ /Volumes/klab"$1"
-}
-f() { CUDA_VISIBLE_DEVICES="$1" python -m pdb; }
+alias clr=clear
+alias ipython3='/home/mohit/anaconda3/bin/ipython'

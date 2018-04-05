@@ -148,9 +148,9 @@ alias theano_python='THEANO_FLAGS=blas.ldflags="-L/usr/local/Cellar/openblas/0.2
 # NOTE: I had earlier installed brew python instead of system python. The brew
 # python lives in /usr/local/bin/python. The site packages for brew python live
 # in /usr/local/lib/python2.7/site-packages.
-alias anaconda_python='/home/mohit/anaconda3/bin/python'
-alias brew_python='/usr/bin/python'
-export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python'
+alias anaconda_python='~/bin/anaconda/bin/python'
+alias anaconda_jupyter='/Users/mohit/bin/anaconda/bin/jupyter'
+alias brew_python='/usr/local/bin/python'
 
 alias run_http_server='python -m SimpleHTTPServer'
 

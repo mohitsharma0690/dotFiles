@@ -63,7 +63,7 @@ nnoremap <leader>ne :NERDTreeToggle<CR>
 " colorscheme solarized
 colorscheme gruvbox
 if has('gui_running')
-    set background=light
+    set background=dark
 else
     set background=dark
     " set background=light

@@ -182,3 +182,5 @@ export CUDA_HOME=/usr/local/cuda-8.0
 
 alias clr=clear
 alias ipython3='/home/mohit/anaconda3/bin/ipython'
+
+get_pid () {ps -p $@ -o pid,vsz=MEMORY -o user,group=GROUP -o comm,args=ARGS}

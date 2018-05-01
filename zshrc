@@ -127,7 +127,10 @@ alias ssh_lab_2='ssh -X mohit@128.2.194.87'
 alias ssh_lab_3='ssh -X mohit@128.2.194.84'
 
 # add Annaconda to PATH
-export PATH="/home/mohit/anaconda3/bin:$PATH" 
+# For linux servers
+# export PATH="/home/mohit/anaconda3/bin:$PATH" 
+# For Mac
+export PATH="/Users/mohit/bin/anaconda/bin:$PATH" 
 
 # Add custom binaries to PATH
 export PATH="$PATH:/Users/mohit/bin"
@@ -148,7 +151,7 @@ alias theano_python='THEANO_FLAGS=blas.ldflags="-L/usr/local/Cellar/openblas/0.2
 # NOTE: I had earlier installed brew python instead of system python. The brew
 # python lives in /usr/local/bin/python. The site packages for brew python live
 # in /usr/local/lib/python2.7/site-packages.
-alias anaconda_python='~/bin/anaconda/bin/python'
+alias anaconda_python='/Users/mohit/bin/anaconda/bin/python'
 alias anaconda_jupyter='/Users/mohit/bin/anaconda/bin/jupyter'
 alias brew_python='/usr/local/bin/python'
 
@@ -176,11 +179,17 @@ DISABLE_AUTO_TITLE="true"
 export MUJOCO_PY_MJKEY_PATH=/home/mohit/.mujoco/mjkey.txt
 export MUJOCO_PY_MJPRO_PATH=/home/mohit/.mujoco/mjpro150
 
-export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64"
-export CUDA_HOME=/usr/local/cuda-8.0
+# For Linux ONLY
+# export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
+# export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64"
+# export CUDA_HOME=/usr/local/cuda-8.0
 
 alias clr=clear
-alias ipython3='/home/mohit/anaconda3/bin/ipython'
+# For linux
+# alias ipython3='/home/mohit/anaconda3/bin/ipython'
+# For Mac
+alias ipython3='~/bin/anaconda/bin/ipython'
 
 get_pid () {ps -p $@ -o pid,vsz=MEMORY -o user,group=GROUP -o comm,args=ARGS}
+
+mount_klab () {mkdir -p /Volumes/klab$1 && sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/id_rsa mohit@$2:/ /Volumes/klab$1 }

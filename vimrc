@@ -135,7 +135,7 @@ augroup ft_python
 
     autocmd FileType python setlocal colorcolumn=81
     " autocmd FileType python hi colorcolumn ctermbg=red guibg=#acd1e9
-    autocmd FileType python highlight colorcolumn ctermbg=white guibg=#008080
+    autocmd FileType python highlight colorcolumn ctermbg=darkgrey guibg=#008080
     set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
 augroup END
 " }}}

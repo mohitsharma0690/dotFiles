@@ -32,7 +32,7 @@ set autoindent
 set history=100
 set ruler
 " set cursorline on
-hi CursorLine   cterm=NONE ctermbg=236 ctermfg=None guibg=#303030 guifg=Non
+hi CursorLine   cterm=NONE ctermbg=236 ctermfg=NONE guibg=#303030 guifg=NONE
 set expandtab
 set shiftwidth=4
 set tabstop=4

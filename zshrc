@@ -192,4 +192,7 @@ alias ipython3='~/bin/anaconda/bin/ipython'
 
 get_pid () {ps -p $@ -o pid,vsz=MEMORY -o user,group=GROUP -o comm,args=ARGS}
 
-mount_klab () {mkdir -p /Volumes/klab$1 && sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/id_rsa mohit@$2:/ /Volumes/klab$1 }
+mount_klab () {mkdir -p /Volumes/klab$1 && sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/idt fo r_rsa mohit@$2:/ /Volumes/klab$1 }
+
+# Cisco VPN start for Linux
+alias vpn_start='/opt/cisco/anyconnect/bin/vpnui'

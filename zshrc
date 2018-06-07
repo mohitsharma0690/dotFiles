@@ -44,6 +44,7 @@ source $ZSH/oh-my-zsh.sh
 # aliases
 alias vi="vim"
 alias gst="git status"
+alias gstu="git status -uno"
 alias gcm="git checkout master"
 alias gpr="git pull --rebase"
 alias gco="git checkout "

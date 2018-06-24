@@ -11,6 +11,7 @@ Plugin 'https://github.com/kien/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'scrooloose/nerdcommenter'
 Bundle 'taglist.vim'
 
 call vundle#end()            " required
@@ -105,13 +106,12 @@ nnoremap === i<space> =========================================
 " imap <left>     <nop>
 " imap <right>    <nop>
 
+let mapleader=' '
 let maplocalleader='\\'
 
 " Javascript filetype settings {{{
 augroup ft_javascript
     autocmd!
-    autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-    autocmd FileType javascript vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock("//")<cr>
     autocmd FileType javascript iabbrev <buffer> iff if ()<left>
 augroup END
 " }}}
@@ -119,9 +119,6 @@ augroup END
 " Lua file settings {{{
 augroup ft_lua
     autocmd!
-    autocmd FileType lua nnoremap <buffer> <localleader>c I#<esc>
-    autocmd FileType lua vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock("--")<cr>
-
     autocmd FileType lua setlocal colorcolumn=81
     " change to red for light background
     autocmd FileType lua hi colorcolumn ctermbg=red guibg=#acd1e9
@@ -131,9 +128,6 @@ augroup END
 " Python file settings {{{
 augroup ft_python
     autocmd!
-    autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
-    autocmd FileType python     vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock("#")<cr>
-
     autocmd FileType python setlocal colorcolumn=81
     " autocmd FileType python hi colorcolumn ctermbg=red guibg=#acd1e9
     autocmd FileType python highlight colorcolumn ctermbg=darkgrey guibg=#008080
@@ -144,8 +138,6 @@ augroup END
 " Vimscript file settings {{{
 augroup ft_vim
     autocmd!
-    autocmd FileType vim        nnoremap <buffer> <localleader>c I"<esc>
-    autocmd FileType vim        vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock('"')<cr>
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " }}}
@@ -154,8 +146,6 @@ augroup END
 augroup ft_c_cpp
     autocmd!
     autocmd FileType c,cpp      iabbrev <buffer> iff if ( )<esc>hi
-    autocmd FileType c,cpp      nnoremap <buffer> <localleader>c I//<esc>
-    autocmd FileType c,cpp      vnoremap <buffer> <localleader>c :<c-u>call CommentOutVisualBlock("//")<cr>
 augroup END
 " }}}
 
@@ -179,20 +169,6 @@ augroup ft_txt_spc
 augroup END
 " }}}
 "
-
-function! CommentOutVisualBlock(comment_string)
-    let firstline = line("'<'")
-    let lastline = line("'>'")
-    for linenum in range(firstline, lastline)
-        let curr_line = getline(linenum)
-        let beginning_of_line = curr_line[:strlen(a:comment_string) - 1]
-        if beginning_of_line == a:comment_string
-            call setline(linenum, curr_line[strlen(a:comment_string):])
-        else
-            call setline(linenum, a:comment_string . curr_line)
-        endif
-    endfor
-endfunction
 
 "change commit status while rebasing
 function! ChangeCommitStatus(char_to_prepend)
@@ -289,7 +265,7 @@ EOF
 endfunction
 
 " set cursor line highlight color
-hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+hi CursorLine   cterm=NONE ctermbg=236 ctermfg=NONE guibg=#303030 guifg=NONE
 
 " open quick-fix window always as a bottom-left window {{{
 autocmd FileType qf wincmd J
@@ -341,3 +317,5 @@ let g:ctrlp_custom_ignore = {
     set tabstop=2
   endfunction
 " }}}
+"
+

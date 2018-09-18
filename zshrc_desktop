@@ -200,4 +200,11 @@ mount_klab () {mkdir -p /Volumes/klab$1 && sshfs -o allow_other,defer_permission
 alias vpn_start='/opt/cisco/anyconnect/bin/vpnui'
 
 
-PATH=$PATH:$HOME/Software/Telegram # Add RVM to PATH for scripting
+export PATH=$PATH:$HOME/Software/Telegram # Add RVM to PATH for scripting
+
+# gsettings set org.gnome.desktop.background show-desktop-icons false
+alias nautilus='nautilus --no-desktop'
+
+# Add i3 stuff to path
+
+

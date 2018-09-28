@@ -207,4 +207,6 @@ alias nautilus='nautilus --no-desktop'
 
 # Add i3 stuff to path
 
+# Add redshift invocation
+alias rrr_redshift='redshift -t 5500:4200 & > /dev/null 2>&1'
 

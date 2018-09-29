@@ -210,3 +210,8 @@ alias nautilus='nautilus --no-desktop'
 # Add redshift invocation
 alias rrr_redshift='redshift -t 5500:4200 & > /dev/null 2>&1'
 
+# Add texlive to path
+export PATH=$PATH:/usr/local/texlive/2018/bin/x86_64-linux
+
+# Add ROS environment variables.
+source /opt/ros/kinetic/setup.zsh

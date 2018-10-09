@@ -130,7 +130,9 @@ alias ssh_lab_3='ssh -X mohit@128.2.194.84'
 
 # add Annaconda to PATH
 # For linux servers
-export PATH="/usr0/home/mohits1/anaconda3/bin:$PATH" 
+# NOTE: Adding conda env to path causes problems with ROS, hence remove it.
+# If we want to use it add it manually.
+# export PATH="/usr0/home/mohits1/anaconda3/bin:$PATH" 
 # For Mac
 # export PATH="/Users/mohit/bin/anaconda/bin:$PATH" 
 

@@ -44,6 +44,7 @@ source $ZSH/oh-my-zsh.sh
 # aliases
 alias vi="vim"
 alias gst="git status"
+alias gstu="git status -uno"
 alias gcm="git checkout master"
 alias gpr="git pull --rebase"
 alias gco="git checkout "
@@ -119,7 +120,7 @@ alias src_ROS='cd /opt/ros/indigo && source setup.sh'
 # Add Matlab to PATH
 export PATH="$PATH:/Applications/MATLAB_R2015a.app/bin"
 
-# . /Users/mohit/Projects/torch/install/bin/torch-activate
+. /Users/mohit/Projects/torch/install/bin/torch-activate
 
 # Add alias for Lab work
 alias ssh_lab_1='ssh -X mohit@128.2.194.56'
@@ -128,9 +129,9 @@ alias ssh_lab_3='ssh -X mohit@128.2.194.84'
 
 # add Annaconda to PATH
 # For linux servers
-export PATH="$PATH:/home/mohit/anaconda3/bin" 
+# export PATH="/home/mohit/anaconda3/bin:$PATH" 
 # For Mac
-# export PATH="/Users/mohit/bin/anaconda/bin:$PATH" 
+export PATH="/Users/mohit/bin/anaconda/bin:$PATH" 
 
 # Add custom binaries to PATH
 export PATH="$PATH:/Users/mohit/bin"
@@ -142,8 +143,8 @@ export PATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.x
 # Make YouCompleteMe work. YCM was compiled with system python. I've to use homebrew pyton for theano etc.
 # So to make all of this work together do this.
 
-#export PYTHONPATH="/Users/mohit/bin/anaconda/lib/python2.7/site-packages"
-#export PYTHONPATH="$PATH:/usr/local/Cellar/opencv3/HEAD-157a90a_4/lib/python2.7/site-packages"
+export PYTHONPATH="/Users/mohit/bin/anaconda/lib/python2.7/site-packages"
+export PYTHONPATH="$PATH:/usr/local/Cellar/opencv3/HEAD-157a90a_4/lib/python2.7/site-packages"
 
 alias theano_python_gpu='THEANO_FLAGS=blas.ldflags="-L/usr/lib/ -lblas",mode=FAST_RUN,device=gpu,floatX=float32,exception_verbosity=high python'
 alias theano_python='THEANO_FLAGS=blas.ldflags="-L/usr/local/Cellar/openblas/0.2.18_2/lib/ -lblas",floatX=float32 python'
@@ -151,8 +152,8 @@ alias theano_python='THEANO_FLAGS=blas.ldflags="-L/usr/local/Cellar/openblas/0.2
 # NOTE: I had earlier installed brew python instead of system python. The brew
 # python lives in /usr/local/bin/python. The site packages for brew python live
 # in /usr/local/lib/python2.7/site-packages.
-alias anaconda_python='/Users/mohit/anaconda/bin/python'
-alias anaconda_jupyter='/Users/mohit/anaconda/bin/jupyter'
+alias anaconda_python='/Users/mohit/bin/anaconda/bin/python'
+alias anaconda_jupyter='/Users/mohit/bin/anaconda/bin/jupyter'
 alias brew_python='/usr/local/bin/python'
 
 alias run_http_server='python -m SimpleHTTPServer'
@@ -184,7 +185,6 @@ export MUJOCO_PY_MJPRO_PATH=/home/mohit/.mujoco/mjpro150
 # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64"
 # export CUDA_HOME=/usr/local/cuda-8.0
 
-  
 alias clr=clear
 # For linux
 # alias ipython3='/home/mohit/anaconda3/bin/ipython'
@@ -193,9 +193,17 @@ alias ipython3='~/bin/anaconda/bin/ipython'
 
 get_pid () {ps -p $@ -o pid,vsz=MEMORY -o user,group=GROUP -o comm,args=ARGS}
 
-mount_klab () {mkdir -p /Volumes/klab$1 && sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/id_rsa mohit@$2:/ /Volumes/klab$1 }
+mount_klab () {mkdir -p /Volumes/klab$1 && sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/idt fo r_rsa mohit@$2:/ /Volumes/klab$1 }
 
+# Cisco VPN start for Linux
 alias vpn_start='/opt/cisco/anyconnect/bin/vpnui'
 
-# Add Telegram to PATH
-PATH=$PATH:$HOME/bin/Telegram 
+# gsettings set org.gnome.desktop.background show-desktop-icons false
+alias nautilus='nautilus --no-desktop'
+
+# Add i3 stuff to path
+
+# Add redshift invocation
+alias rrr_redshift='redshift -t 5500:4200 & > /dev/null 2>&1'
+
+source /opt/ros/kinetic/setup.zsh

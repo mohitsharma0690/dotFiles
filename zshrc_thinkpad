@@ -129,12 +129,12 @@ alias ssh_lab_3='ssh -X mohit@128.2.194.84'
 
 # add Annaconda to PATH
 # For linux servers
-# export PATH="/home/mohit/anaconda3/bin:$PATH" 
+export PATH="/home/mohit/anaconda3/bin:$PATH" 
 # For Mac
-export PATH="/Users/mohit/bin/anaconda/bin:$PATH" 
+# export PATH="/Users/mohit/bin/anaconda/bin:$PATH" 
 
 # Add custom binaries to PATH
-export PATH="$PATH:/Users/mohit/bin"
+export PATH="$PATH:/home/mohit/bin"
 # Prefer homebrew stuff (NOTE This forces to use brew python instead of /usr/bin/python
 export PATH="/usr/local/bin:/usr/local/Cellar:$PATH"
 
@@ -143,7 +143,7 @@ export PATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.x
 # Make YouCompleteMe work. YCM was compiled with system python. I've to use homebrew pyton for theano etc.
 # So to make all of this work together do this.
 
-export PYTHONPATH="/Users/mohit/bin/anaconda/lib/python2.7/site-packages"
+export PYTHONPATH="/home/mohit/bin/anaconda/lib/python2.7/site-packages"
 export PYTHONPATH="$PATH:/usr/local/Cellar/opencv3/HEAD-157a90a_4/lib/python2.7/site-packages"
 
 alias theano_python_gpu='THEANO_FLAGS=blas.ldflags="-L/usr/lib/ -lblas",mode=FAST_RUN,device=gpu,floatX=float32,exception_verbosity=high python'
@@ -152,8 +152,8 @@ alias theano_python='THEANO_FLAGS=blas.ldflags="-L/usr/local/Cellar/openblas/0.2
 # NOTE: I had earlier installed brew python instead of system python. The brew
 # python lives in /usr/local/bin/python. The site packages for brew python live
 # in /usr/local/lib/python2.7/site-packages.
-alias anaconda_python='/Users/mohit/bin/anaconda/bin/python'
-alias anaconda_jupyter='/Users/mohit/bin/anaconda/bin/jupyter'
+alias anaconda_python='/home/mohit/bin/anaconda/bin/python'
+alias anaconda_jupyter='/home/mohit/bin/anaconda/bin/jupyter'
 alias brew_python='/usr/local/bin/python'
 
 alias run_http_server='python -m SimpleHTTPServer'

@@ -218,3 +218,5 @@ mode "$mode_screenshot" {
 }
 bindsym $mod+Home mode "$mode_screenshot"
 
+# display visor for multi-monitor support
+exec --no-startup-id display-visor -f -l

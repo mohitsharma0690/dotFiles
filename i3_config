@@ -16,7 +16,7 @@ set $mod Mod1
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 # font pango:DejaVu Sans Mono 8 (Default font)
-font pango: Ubuntu Mono 10 # preferred font
+font pango: Ubuntu Mono 12 # preferred font
 
 # https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg#Using_xset
 #              msdelay rate
@@ -220,3 +220,11 @@ bindsym $mod+Home mode "$mode_screenshot"
 
 # display visor for multi-monitor support
 exec --no-startup-id display-visor -f -l
+
+# Show network manager
+exec --no-startup-id nm-applet
+
+# Screen brightness controls with notification
+bindsym XF86MonBrightnessUp exec "light -A 5; notify-send 'brightness up'" # increase screen brightness with notification
+bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down'" # decrease screen brightness with notification
+

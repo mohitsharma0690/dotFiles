@@ -129,7 +129,7 @@ alias ssh_lab_3='ssh -X mohit@128.2.194.84'
 
 # add Annaconda to PATH
 # For linux servers
-export PATH="/home/mohit/anaconda3/bin:$PATH" 
+# export PATH="/home/mohit/anaconda3/bin:$PATH" 
 # For Mac
 # export PATH="/Users/mohit/bin/anaconda/bin:$PATH" 
 
@@ -137,8 +137,6 @@ export PATH="/home/mohit/anaconda3/bin:$PATH"
 export PATH="$PATH:/home/mohit/bin"
 # Prefer homebrew stuff (NOTE This forces to use brew python instead of /usr/bin/python
 export PATH="/usr/local/bin:/usr/local/Cellar:$PATH"
-
-export PATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH
 
 # Make YouCompleteMe work. YCM was compiled with system python. I've to use homebrew pyton for theano etc.
 # So to make all of this work together do this.
@@ -207,3 +205,10 @@ alias nautilus='nautilus --no-desktop'
 alias rrr_redshift='redshift -t 5500:4200 & > /dev/null 2>&1'
 
 source /opt/ros/kinetic/setup.zsh
+
+# Install Ruby Gems to ~/gems
+export GEM_HOME=$HOME/gems
+export PATH=$HOME/gems/bin:$PATH
+
+# Add to path
+export PATH="/home/mohit/bin":$PATH

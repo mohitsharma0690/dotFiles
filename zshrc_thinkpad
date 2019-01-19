@@ -36,7 +36,7 @@ autoload -Uz last_mod_dir
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python pip ruby git-extras git-flow osx rails zsh-syntax-highlighting z colored-man-pages colorize vi-mode)
+plugins=(git python pip ruby git-extras git-flow osx rails zsh-syntax-highlighting z colored-man-pages colorize vi-mode tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -91,10 +91,6 @@ alias gl1="gl | head -1 | pbcopy"
 
 alias ctags=/usr/local/bin/ctags
 
-# add python bindings for clang to search path
-# export PYTHONPATH="${PYTHONPATH}:/Users/mohitsharma/projects/python-clang-bindings"
-#export PYTHONPATH="${PYTHONPATH}:/usr/local/google_appengine" # add appengine
-
 # add libclang to dynamic load path
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/home/mohit/.mujoco/mjpro150/bin"
 
@@ -114,12 +110,6 @@ bindkey "OB" history-search-forward # Down
 bindkey 'OA' history-beginning-search-backward
 bindkey 'OB' history-beginning-search-forward
 
-alias src_ROS='cd /opt/ros/indigo && source setup.sh'
-
-
-# Add Matlab to PATH
-export PATH="$PATH:/Applications/MATLAB_R2015a.app/bin"
-
 . /Users/mohit/Projects/torch/install/bin/torch-activate
 
 # Add alias for Lab work
@@ -135,14 +125,11 @@ alias ssh_lab_3='ssh -X mohit@128.2.194.84'
 
 # Add custom binaries to PATH
 export PATH="$PATH:/home/mohit/bin"
-# Prefer homebrew stuff (NOTE This forces to use brew python instead of /usr/bin/python
-export PATH="/usr/local/bin:/usr/local/Cellar:$PATH"
 
 # Make YouCompleteMe work. YCM was compiled with system python. I've to use homebrew pyton for theano etc.
 # So to make all of this work together do this.
 
-export PYTHONPATH="/home/mohit/bin/anaconda/lib/python2.7/site-packages"
-export PYTHONPATH="$PATH:/usr/local/Cellar/opencv3/HEAD-157a90a_4/lib/python2.7/site-packages"
+# export PYTHONPATH="/home/mohit/bin/anaconda/lib/python2.7/site-packages"
 
 alias theano_python_gpu='THEANO_FLAGS=blas.ldflags="-L/usr/lib/ -lblas",mode=FAST_RUN,device=gpu,floatX=float32,exception_verbosity=high python'
 alias theano_python='THEANO_FLAGS=blas.ldflags="-L/usr/local/Cellar/openblas/0.2.18_2/lib/ -lblas",floatX=float32 python'
@@ -158,8 +145,6 @@ alias run_http_server='python -m SimpleHTTPServer'
 
 # We use virtualenv for brew python (opencv is installed using this)
 source /usr/local/bin/virtualenvwrapper.sh
-
-export DYLD_LIBRARY_PATH=/Users/mohit/Projects/OpenCV_Install/opencv/build/lib:$DYLD_LIBRARY_PATH
 
 # $1 = type; 0 - both, 1 - tab, 2 - title
 # rest = text
@@ -191,7 +176,8 @@ alias ipython3='~/bin/anaconda/bin/ipython'
 
 get_pid () {ps -p $@ -o pid,vsz=MEMORY -o user,group=GROUP -o comm,args=ARGS}
 
-mount_klab () {mkdir -p /Volumes/klab$1 && sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/idt fo r_rsa mohit@$2:/ /Volumes/klab$1 }
+mount_klab () {mkdir -p /Volumes/klab$1 && sshfs -o IdentityFile=~/.ssh/id_rsa mohit@$2:/ /Volumes/klab$1 }
+mount_iamlab () {mkdir -p ~/mnt/iamlab$1 && sshfs -o IdentityFile=~/.ssh/id_rsa mohit@$2:/ ~/mnt/iamlab$1 }
 
 # Cisco VPN start for Linux
 alias vpn_start='/opt/cisco/anyconnect/bin/vpnui'
@@ -212,3 +198,15 @@ export PATH=$HOME/gems/bin:$PATH
 
 # Add to path
 export PATH="/home/mohit/bin":$PATH
+
+source /home/mohit/ssh_configs.zsh
+
+# xinput set-prop "Touchpad Name" "Synaptics Noise Cancellation" 20 20
+# input set-prop 11 "Synaptics Finger" 25 30 0
+# input set-prop 11 "Synaptics Finger" 40 50 100
+#
+export PATH="/home/mohit/Software/clion-2018.2.6/bin":$PATH
+
+export PATH="/usr/local/texlive/2018/bin/x86_64-linux":$PATH
+
+ssh_fwd_issac () {ssh -N -f -L localhost:$1:localhost:$1 mohit@isaac.ri.cmu.edu }

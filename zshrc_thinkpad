@@ -211,4 +211,4 @@ export PATH="/usr/local/texlive/2018/bin/x86_64-linux":$PATH
 
 ssh_fwd_issac () {ssh -N -f -L localhost:$1:localhost:$1 mohit@isaac.ri.cmu.edu }
 # alias monitor_screen_fix='xrandr --output eDP-1 --off --output HDMI-1 --mode 1920x1080 --scale 2x2 --panning 3840x2160+0+0; feh --bg-scale /home/tanya/acads/wallpapers/astronaut.jpg; xset r rate 250 60; setxkbmap -option caps:escape'
-alias monitor_screen_fix='xrandr --output eDP-1 --off --output HDMI-1 --mode 1920x1080 --scale 1.5x1.5 --panning 2880x1620+0+0; feh --bg-scale /home/tanya/acads/wallpapers/astronaut.jpg; xset r rate 250 60; setxkbmap -option caps:escape'
+alias monitor_screen_fix='xrandr --output eDP-1 --off --output HDMI-1 --mode 1920x1080 --scale 1.5x1.5 --panning 2880x1620+0+0 && xset r rate 250 60 && setxkbmap -option caps:escape'

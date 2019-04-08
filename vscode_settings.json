@@ -1,0 +1,20 @@
+{
+    "python.linting.pylintEnabled": false,
+    "python.linting.pep8Enabled": true,
+    "python.linting.enabled": true,
+    "editor.tabCompletion": "on",
+    "editor.renderIndentGuides": false,
+    "editor.formatOnPaste": true,
+    "vim.searchHighlightColor": "#135564",
+    "editor.rulers": [80],
+    "vim.easymotion": true,
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [ ";", ";" ],
+            "after": [ "<Esc>" ]
+        }
+    ],
+    "vim.leader": "<space>"
+}

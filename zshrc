@@ -197,3 +197,5 @@ mount_klab () {mkdir -p /Volumes/klab$1 && sshfs -o allow_other,defer_permission
 
 # Cisco VPN start for Linux
 alias vpn_start='/opt/cisco/anyconnect/bin/vpnui'
+
+add_conda() { export PATH="/home/mohit/anaconda3/bin:$PATH" }

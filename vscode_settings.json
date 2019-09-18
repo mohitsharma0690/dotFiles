@@ -20,5 +20,7 @@
         "<C-a>": false,
         "<C-f>": false
     },
-    "vim.leader": "<space>"
+    "vim.leader": "<space>",
+    "editor.minimap.enabled": false,
+    "editor.minimap.maxColumn": 100
 }

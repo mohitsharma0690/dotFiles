@@ -27,10 +27,11 @@
 [mergetool]
     keepBackup = false
 [diff]  
-    tool = diffmerge
+    # tool = diffmerge
+    tool = meld
 	renames = copies
-[difftool "diffmerge"]
-    cmd = diffmerge $LOCAL $REMOTE
+[difftool "meld"]
+    cmd = meld $LOCAL $REMOTE
 [branch]
 	autosetupmerge = true
 [push]

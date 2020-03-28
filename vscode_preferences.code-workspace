@@ -5,6 +5,7 @@
 		}
 	],
 	"settings": {
+		"editor.tabCompletion": "on",
 		"editor.rulers": [80],
 		"vim.easymotion": true,
 		"vim.sneak": true,
@@ -12,6 +13,7 @@
 		"vim.useSystemClipboard": true,
 		"vim.useCtrlKeys": true,
 		"vim.hlsearch": true,
+		"vim.searchHighlightColor": "#4E4712",
 		"vim.insertModeKeyBindings": [
 			{
 				"before": [ ";", ";" ],
@@ -32,6 +34,13 @@
 		"vim.handleKeys": {
 			"<C-a>": false,
 			"<C-f>": false
-		}
+		},
+		
+		// Color changes
+		"workbench.editor.enablePreview": false,
+		"workbench.editor.enablePreviewFromQuickOpen": false,
+		"workbench.colorCustomizations": {
+			"statusBar.background": "#475672",
+		},
 	}
 }

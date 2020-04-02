@@ -1,0 +1,38 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.renderLineHighlight": "none",
+    "workbench.colorTheme": "Tomorrow Night Eighties Operator Mono",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.rulers": [80],
+    },
+    "[c]": {
+        "editor.rulers": [100],
+    },
+    "editor.renderIndentGuides": false,
+    "python.dataScience.sendSelectionToInteractiveWindow": true,
+    "editor.tabCompletion": "on",
+    "workbench.colorCustomizations": {
+        "editor.selectionBackground": "#135564",
+        "editor.selectionHighlightBackground": "#135564"
+    },
+     "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-c>": false
+    },
+    "vim.insertModeKeyBindingsNonRecursive": [
+      {
+        "before": [";", ";"],
+        "after": ["<ESC>"]
+      },
+    ],
+    "sync.gist": "vscode_settings_isaac",
+    "sync.autoUpload": true,
+    "terminal.integrated.windowsEnableConpty": false,
+    "latex-workshop.view.pdf.viewer": "tab",
+    "window.zoomLevel": 0,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#475672",
+    }
+}

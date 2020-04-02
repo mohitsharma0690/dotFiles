@@ -36,7 +36,7 @@ autoload -Uz last_mod_dir
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python pip ruby git-extras git-flow tmux osx rails z colored-man-pages colorize vi-mode zsh-syntax-highlighting)
+plugins=(git python pip ruby git-extras git-flow tmux osx rails z colored-man-pages colorize vi-mode zsh-syntax-highlighting history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,7 +97,7 @@ alias ctags=/usr/local/bin/ctags
 
 # add libclang to dynamic load path
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.mujoco/mjpro150/bin"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/nvidia-396"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/nvidia-410"
 
 
 # add the jsc source for javascript debugging (better to create a symlink) 
@@ -121,7 +121,7 @@ alias src_ROS='cd /opt/ros/indigo && source setup.sh'
 # Add Matlab to PATH
 export PATH="$PATH:/Applications/MATLAB_R2015a.app/bin"
 
-. /Users/mohit/Projects/torch/install/bin/torch-activate
+#. /Users/mohit/Projects/torch/install/bin/torch-activate
 
 # Add alias for Lab work
 alias ssh_lab_1='ssh -X mohit@128.2.194.56'
@@ -155,8 +155,8 @@ alias theano_python='THEANO_FLAGS=blas.ldflags="-L/usr/local/Cellar/openblas/0.2
 # NOTE: I had earlier installed brew python instead of system python. The brew
 # python lives in /usr/local/bin/python. The site packages for brew python live
 # in /usr/local/lib/python2.7/site-packages.
-alias anaconda_python='/usr0/home/mohits1/anaconda3/bin/python'
-alias anaconda_jupyter='/usr0/home/mohits1/anaconda3/bin/jupyter'
+alias anaconda_python='/home/mohits1/anaconda3/bin/python'
+alias anaconda_jupyter='/home/mohits1/anaconda3/bin/jupyter'
 # alias brew_python='/usr/local/bin/python'
 
 alias run_http_server='python -m SimpleHTTPServer'
@@ -180,13 +180,17 @@ stt_title () { setTerminalText 2 $@; }
 # Disable iterm2 from automatically changing window/tab title
 DISABLE_AUTO_TITLE="true" 
 
-export MUJOCO_PY_MJKEY_PATH=/usr0/home/mohits1/.mujoco/mjkey.txt
-export MUJOCO_PY_MJPRO_PATH=/usr0/home/mohits1/.mujoco/mjpro150
+export MUJOCO_PY_MJKEY_PATH=/home/mohit/.mujoco/mjkey.txt
+export MUJOCO_PY_MJPRO_PATH=/home/mohit/.mujoco/mjpro150
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so:/usr/lib/nvidia-410/libGL.so
 
 # For Linux ONLY
 # export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
-# export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64"
-# export CUDA_HOME=/usr/local/cuda-8.0
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/extras/CUPTI/lib64"
+export CUDA_HOME=/usr/local/cuda-10.0
+export PATH=$PATH:"/usr/local/cuda-10.0/bin"
+
+export UE4_ROOT=~/UnrealEngine_4.22
 
 alias clr=clear
 # For linux
@@ -197,6 +201,7 @@ alias ipython3='~/bin/anaconda/bin/ipython'
 get_pid () {ps -p $@ -o pid,vsz=MEMORY -o user,group=GROUP -o comm,args=ARGS}
 
 mount_klab () {mkdir -p ~/mount/klab$1 && sshfs mohit@$2:/ ~/mount/klab$1 }
+mount_iamlab() {mkdir -p ~/mnt/iamlab$1 && sshfs -o IdentityFile=~/.ssh/id_rsa mohit@$2:/ ~/mnt/iamlab$1 }
 
 # Cisco VPN start for Linux
 alias vpn_start='/opt/cisco/anyconnect/bin/vpnui'
@@ -217,3 +222,23 @@ export PATH=$PATH:/usr/local/texlive/2018/bin/x86_64-linux
 
 # Add ROS environment variables.
 source /opt/ros/kinetic/setup.zsh
+# Add realsense workspace.
+source /home/mohit/ros_workspaces/realsense_ros_ws/devel/setup.zsh
+
+source /home/mohit/ssh_configs.zsh
+
+add_conda() { export PATH="/home/mohit/anaconda3/bin:$PATH" }
+add_conda_env_to_py_paty() { export PYTHONPATH=$CONDA_PREFIX"/lib/python3.7/site-packages":$PYTHONPATH }
+add_conda_env_to_py36() { export PYTHONPATH="/home/mohit/anaconda3/envs/py36/lib/python3.7/site-packages":$PYTHONPATH } 
+source ~/ros_workspaces/realsense_ros_ws/devel/setup.zsh
+
+export PATH=$PATH:"/home/mohit/Software/Telegram"
+
+export VREP_ROOT="/home/mohit/Software/V-REP_PRO_EDU_V3_6_2_Ubuntu16_04/"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$VREP_ROOT
+export QT_QPA_PLATFORM_PLUGIN_PATH=$VREP_ROOT
+
+
+add_clion() { /bin/sh /home/mohit/Software/clion-2018.3.3/bin/clion.sh }
+
+

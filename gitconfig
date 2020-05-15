@@ -1,38 +1,25 @@
 [user]
-	name = Mohit
-	user = mohitsharma0690
-	email = mohit.sharma0690@gmail.com
+    name = Mohit
     editor = vim
 [color]
-	branch = always
-	ui = true
-# [merge]
-#	tool = vimdiff
-# [core]
-#	trustctime = false
-#	excludesfile = /Users/mohitsharma/.gitignore_global
-#[difftool "sourcetree"]
-#	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-#	path = 
-#[mergetool "sourcetree"]
-#	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-#	trustExitCode = true
+    branch = always
+    ui = true
 
 [mergetool "diffmerge"]
     cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
     trustExitCode = false
 [merge] 
-    tool = diffmerge
+    tool = meld
 [core]
 [mergetool]
     keepBackup = false
 [diff]  
     # tool = diffmerge
     tool = meld
-	renames = copies
+    renames = copies
 [difftool "meld"]
     cmd = meld $LOCAL $REMOTE
 [branch]
-	autosetupmerge = true
+    autosetupmerge = true
 [push]
-	default = simple
+    default = simple

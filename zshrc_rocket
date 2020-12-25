@@ -97,7 +97,7 @@ alias ctags=/usr/local/bin/ctags
 
 # add libclang to dynamic load path
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.mujoco/mjpro150/bin"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/nvidia-410"
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/nvidia-430"
 
 
 # add the jsc source for javascript debugging (better to create a symlink) 
@@ -119,7 +119,7 @@ alias src_ROS='cd /opt/ros/indigo && source setup.sh'
 
 
 # Add Matlab to PATH
-export PATH="$PATH:/Applications/MATLAB_R2015a.app/bin"
+# export PATH="$PATH:/Applications/MATLAB_R2015a.app/bin"
 
 #. /Users/mohit/Projects/torch/install/bin/torch-activate
 
@@ -182,13 +182,38 @@ DISABLE_AUTO_TITLE="true"
 
 export MUJOCO_PY_MJKEY_PATH=/home/mohit/.mujoco/mjkey.txt
 export MUJOCO_PY_MJPRO_PATH=/home/mohit/.mujoco/mjpro150
-export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so:/usr/lib/nvidia-410/libGL.so
+# export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so:/usr/lib/nvidia-430/libGL.so
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so
 
 # For Linux ONLY
 # export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/extras/CUPTI/lib64"
-export CUDA_HOME=/usr/local/cuda-10.0
-export PATH=$PATH:"/usr/local/cuda-10.0/bin"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-11.2/lib64:/usr/local/cuda-11.2/extras/CUPTI/lib64"
+export CUDA_HOME=/usr/local/cuda-11.2
+export PATH=$PATH:"/usr/local/cuda-11.2/bin"
+
+check_cuda_in_path() { 
+  if [[ $PATH =~ "cuda" ]]; then
+    echo "Found cuda in path"
+  else
+    echo "Did not find cuda in path"
+  fi
+}
+
+remove_cuda_path() { 
+  if [[ $PATH =~ "cuda" ]]; then
+    export PATH=$(echo ${PATH} | awk -v RS=: -v ORS=: '/cuda/ {next} {print}' | sed 's/:*$//')
+  fi
+}
+
+remove_ld_library_path() {
+  if [[ $LD_LIBRARY_PATH =~ "cuda" ]]; then
+    export LD_LIBRARY_PATH=$(echo ${LD_LIBRARY_PATH} | awk -v RS=: -v ORS=: '/cuda/ {next} {print}' | sed 's/:*$//')
+  fi
+}
+
+set_cuda_10() { remove_cuda_path && remove_ld_library_path && export LD_LIBRARY_PATH="/usr/local/cuda-10.2/lib64:/usr/local/cuda-10.2/extras/CUPTI/lib64:${LD_LIBRARY_PATH}" && export CUDA_HOME=/usr/local/cuda-10.2 && export PATH="${PATH}:/usr/local/cuda-10.2/bin" }
+
+set_cuda_11() { remove_cuda_path && remove_ld_library_path && export LD_LIBRARY_PATH="/usr/local/cuda-10.2/lib64:/usr/local/cuda-10.2/extras/CUPTI/lib64:${LD_LIBRARY_PATH}" && export CUDA_HOME=/usr/local/cuda-10.2 && export PATH="${PATH}:/usr/local/cuda-10.2/bin" }
 
 export UE4_ROOT=~/UnrealEngine_4.22
 
@@ -220,24 +245,39 @@ alias rrr_redshift='redshift -t 5500:4200 & > /dev/null 2>&1'
 # Add texlive to path
 export PATH=$PATH:/usr/local/texlive/2018/bin/x86_64-linux
 
-# Add ROS environment variables.
-source /opt/ros/kinetic/setup.zsh
-# Add realsense workspace.
-source /home/mohit/ros_workspaces/realsense_ros_ws/devel/setup.zsh
+export PATH=$PATH:/home/mohit/Software/cmake-3.18.5-Linux-x86_64/bin
 
-source /home/mohit/ssh_configs.zsh
+# Add ROS environment variables.
+[ -d "/opt/ros/kinetic" ] && source /opt/ros/kinetic/setup.zsh
+# Add realsense workspace.
+[ -d "/home/mohit/ros_workspaces/realsense_ros_ws/devel" ] && source /home/mohit/ros_workspaces/realsense_ros_ws/devel/setup.zsh
 
 add_conda() { export PATH="/home/mohit/anaconda3/bin:$PATH" }
-add_conda_env_to_py_paty() { export PYTHONPATH=$CONDA_PREFIX"/lib/python3.7/site-packages":$PYTHONPATH}
-add_conda_env_to_py36() { export PYTHONPATH="/home/mohit/anaconda3/envs/py36/lib/python3.7/site-packages":$PYTHONPATH } 
-source ~/ros_workspaces/realsense_ros_ws/devel/setup.zsh
+add_conda_env_to_py_paty() { export PYTHONPATH=$CONDA_PREFIX"/lib/python3.7/site-packages":$PYTHONPATH }
+add_conda_env_to_py36() { export PYTHONPATH="/home/mohit/anaconda3/envs/py36/lib/python3.7/site-packages":$PYTHONPATH }
+[ -d "~/ros_workspaces/realsense_ros_ws/devel" ] && source ~/ros_workspaces/realsense_ros_ws/devel/setup.zsh
 
-export PATH=$PATH:"/home/mohit/Software/Telegram"
+export PATH="$PATH:/home/mohit/Software/Telegram"
 
 export VREP_ROOT="/home/mohit/Software/V-REP_PRO_EDU_V3_6_2_Ubuntu16_04/"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$VREP_ROOT
 export QT_QPA_PLATFORM_PLUGIN_PATH=$VREP_ROOT
 
-
 add_clion() { /bin/sh /home/mohit/Software/clion-2018.3.3/bin/clion.sh }
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/mohit/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/mohit/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/mohit/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/mohit/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 

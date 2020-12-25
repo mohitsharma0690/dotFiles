@@ -96,8 +96,8 @@ alias ctags=/usr/local/bin/ctags
 #export PYTHONPATH="${PYTHONPATH}:/usr/local/google_appengine" # add appengine
 
 # add libclang to dynamic load path
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/.mujoco/mjpro150/bin"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/nvidia-410"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOME}/sims/mujoco200_linux/bin"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/nvidia-455"
 
 
 # add the jsc source for javascript debugging (better to create a symlink) 
@@ -180,15 +180,15 @@ stt_title () { setTerminalText 2 $@; }
 # Disable iterm2 from automatically changing window/tab title
 DISABLE_AUTO_TITLE="true" 
 
-export MUJOCO_PY_MJKEY_PATH=/home/mohit/.mujoco/mjkey.txt
-export MUJOCO_PY_MJPRO_PATH=/home/mohit/.mujoco/mjpro150
-export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so:/usr/lib/nvidia-410/libGL.so
+export MUJOCO_PY_MJKEY_PATH=/home/mohit/sims/mjkey.txt
+export MUJOCO_PY_MUJOCO_PATH=/home/mohit/sims/mujoco200_linux/
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so:/usr/lib/nvidia-455/libGL.so
 
 # For Linux ONLY
 # export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/extras/CUPTI/lib64"
-export CUDA_HOME=/usr/local/cuda-10.0
-export PATH=$PATH:"/usr/local/cuda-10.0/bin"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-10.2/lib64:/usr/local/cuda-10.2/extras/CUPTI/lib64"
+export CUDA_HOME=/usr/local/cuda-10.2
+export PATH=$PATH:"/usr/local/cuda-10.2/bin"
 
 export UE4_ROOT=~/UnrealEngine_4.22
 
@@ -201,7 +201,8 @@ alias ipython3='~/bin/anaconda/bin/ipython'
 get_pid () {ps -p $@ -o pid,vsz=MEMORY -o user,group=GROUP -o comm,args=ARGS}
 
 mount_klab () {mkdir -p ~/mount/klab$1 && sshfs mohit@$2:/ ~/mount/klab$1 }
-mount_iamlab() {mkdir -p ~/mnt/iamlab$1 && sshfs -o IdentityFile=~/.ssh/id_rsa mohit@$2:/ ~/mnt/iamlab$1 }
+mount_iamlab() {mkdir -p ~/mnt/iamlab$1 && sshfs -o allow_other -o IdentityFile=~/.ssh/id_rsa mohit@$2:/ ~/mnt/iamlab$1 }
+mount_iamlab2() {mkdir -p ~/mnt/iamlab$1 && sshfs -o allow_other -o IdentityFile=~/.ssh/id_rsa mohit@$1:/ ~/mnt/iamlab$1 }
 
 # Cisco VPN start for Linux
 alias vpn_start='/opt/cisco/anyconnect/bin/vpnui'
@@ -230,6 +231,9 @@ source /home/mohit/ssh_configs.zsh
 add_conda() { export PATH="/home/mohit/anaconda3/bin:$PATH" }
 add_conda_env_to_py_paty() { export PYTHONPATH=$CONDA_PREFIX"/lib/python3.7/site-packages":$PYTHONPATH }
 add_conda_env_to_py36() { export PYTHONPATH="/home/mohit/anaconda3/envs/py36/lib/python3.7/site-packages":$PYTHONPATH } 
+reset_py_path() { export PYTHONPATH="/home/mohit/ros_workspaces/realsense_ros_ws/devel/lib/python2.7/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages" }
+add_conda_env_to_isaac_gym() { export PYTHONPATH="/home/mohit/anaconda3/envs/isaac_gym/lib/python3.6/site-packages":$PYTHONPATH }
+add_conda_env_to_rl_env_custom_bline() { export PYTHONPATH="/home/mohit/anaconda3/envs/rl-envs-custom-bline/lib/python3.6/site-packages":$PYTHONPATH }
 source ~/ros_workspaces/realsense_ros_ws/devel/setup.zsh
 
 export PATH=$PATH:"/home/mohit/Software/Telegram"
@@ -241,4 +245,5 @@ export QT_QPA_PLATFORM_PLUGIN_PATH=$VREP_ROOT
 
 add_clion() { /bin/sh /home/mohit/Software/clion-2018.3.3/bin/clion.sh }
 
+source $HOME/.cargo/env
 
